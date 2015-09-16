@@ -1,0 +1,32 @@
+{
+  "name": "bttools",
+  "version": "1.0.0",
+  "description": "Directory for bttools. Bttools is a microservice for therapy clients to view, fill, and submit exercises",
+  "main": "exercises.js",
+  "scripts": {
+    "test": "Hello World",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Etabat/BTTools.git"
+  },
+  "keywords": [
+    "CBT",
+    "OCCS-TWO",
+    "project",
+    "two",
+    "full-stack",
+    "js",
+    "microservice"
+  ],
+  "author": "Ehsan Tabatabaei <ehsantaba2010@gmail.com> (https://github.com/Etabat/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Etabat/BTTools/issues"
+  },
+  "homepage": "https://github.com/Etabat/BTTools#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
