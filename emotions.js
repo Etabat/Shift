@@ -23,3 +23,4 @@ emotionsRouter.get('/', function(req, res){
     res.send(emotions);
 });
 module.exports = emotionsRouter;
+module.exports = emotions;
