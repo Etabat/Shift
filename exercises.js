@@ -9,5 +9,11 @@ var CBTThoughtRecord = {
       fieldInputTwo: " ",
       fieldQuestionThree: "Who were you with?",
       fieldInputThree: " "
+  },
+  column2: {
+      title: "Emotion or feeling",
+      selectEmotions: {
+          uneasy: []
+      }
   }
 };
