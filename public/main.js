@@ -1,23 +1,66 @@
-function drawWorksheet(worksheet) {
-    document.write(worksheet);
-    // this code would get alot more complicated
-    // each time the user interacts with the page, you can call the xmlrequest to grab the right 'worksheet'
-    // once you do that, you can do very complicated things with the data retrieved
+function addEmotionsList(event){
+    function fetchEmotions(list) {
+        $('#tokenfield').tokenfield({
+            autocomplete: {
+                source: JSON.parse(list),
+                delay: 100,
+                minLength: 2
+            },
+            showAutocompleteOnFocus: false
+        });
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', function(e) {
+        if((xhr.status === 200) || (xhr.status === 304)){
+            var list = xhr.responseText;
+            fetchEmotions(list);
+            console.log(document.activeElement);
+            event.preventDefault();
+        }
+        else {
+            alert(e.target.responseText);
+        }
+    });
+    xhr.addEventListener("error", function() {
+        alert('Something goes wrong.');
+    });
+    xhr.open('GET', './emotionList.json', true);
+    xhr.send();
 }
-var xhr = new XMLHttpRequest();
-xhr.addEventListener('load', function(e) {
-    if((xhr.status === 200) || (xhr.status === 304)){
-        var questions = JSON.parse(xhr.responseText);
-        drawWorksheet(questions);
-        document.getElementById('serveQ').innerHTML = questions.id1[0];
-        alert('Yeah!');
+function populate(event){
+    event.preventDefault();
+    function addWorksheets(sectionOne) {
+    var subtitles = document.querySelectorAll('form h3');
+    subtitles[0].textContent = sectionOne.subtitle;
+    subtitles[1].textContent = sectionOne.subtitle2;
+    subtitles[2].textContent = sectionOne.subtitle3;
+    subtitles[3].textContent = sectionOne.subtitle4;
+    var descriptions = document.querySelectorAll('form p');
+    descriptions[0].textContent = sectionOne.description;
+    descriptions[1].textContent = sectionOne.description2;
+    descriptions[2].textContent = sectionOne.description3;
     }
-    else {
-        alert(e.target.responseText);
-    }
-});
-xhr.addEventListener("error", function() {
-    alert('Something goes wrong.');
-});
-xhr.open('GET', './questions', true);
-xhr.send();
+    var xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', function(e) {
+        if((xhr.status === 200) || (xhr.status === 304)){
+            var response = xhr.responseText;
+            var sections = JSON.parse(response);
+            var sectionOne = sections.stressLog;
+            console.log(sectionOne);
+            addWorksheets(sectionOne);
+        }
+        else {
+            alert(e.target.responseText);
+        }
+    });
+    xhr.addEventListener("error", function() {
+        alert('Something goes wrong.');
+    });
+    xhr.open('GET', './worksheets.json', true);
+    xhr.send();
+}
+var toggleStressLog = document.getElementById('toggleStressLog');
+toggleStressLog.addEventListener('click',  function(event) {
+    populate(event);
+    addEmotionsList(event);
+}, true);

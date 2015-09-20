@@ -1,24 +1,17 @@
 {
   "stressLog": {
-  "title": "Stress Log",
-  "subtitle": "When and Where",
-  "date": "",
-  "subtitle2": "Situation",
-  "description": [
-    "Think about the following questions and answer them below: ",
-    "Where were you?",
-    "What were you doing?",
-    "Who were you with?"],
-  "subtitle3": "Emotion or feeling",
-  "description2": "They can be described in one word. Pick the ones you were feeling. Rate them between 1-100%",
-  "emotionsList": "",
-  "newEmotions": "If you don\"t see the right word to describe your emotions in the list above. Enter your own below to add to the list. Must be one word",
-  "subtitle4": "Negative Automatic Thoughts",
-  "description3": [
-    "Think about the following questions and answer them below: ",
-    "What thoughts were going through your mind?",
-    "What memories or images came to mind?"]
-}
+    "title": "Stress Log",
+    "subtitle": "When and Where",
+    "date": "",
+    "subtitle2": "Situation",
+    "description": "Think about the following questions and answer them below: Where were you? What were you doing? Who were you with?",
+    "subtitle3": "Emotions and feelings",
+    "description2": "They can be described in one word. Pick the ones you were feeling. Rate them between 1-100%",
+    "emotionsList": "",
+    "newEmotions": "If you don\"t see the right word to describe your emotions in the list above. Enter your own below to add to the list. Must be one word",
+    "subtitle4": "Negative Automatic Thoughts",
+    "description3": "Think about the following questions and answer them below: What thoughts were going through your mind? What memories or images came to mind?"
+  },
   "thoughtChallenge": {
     "title": "Thought Challenge"
   }
