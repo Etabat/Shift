@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/Etabat/BTTools#readme",
   "dependencies": {
+    "body-parser": "^1.14.0",
     "express": "^4.13.3"
   }
 }

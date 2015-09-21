@@ -1,9 +1,14 @@
 var express = require('express');
 var app = express();
-var user = require('./login.js');
 var path = require('path');
+var myRoute = require('./router');
 app.use(express.static(__dirname + '/public'));
-app.use('/login', user);
+app.use('/hithisisphone',  myRoute, function(req, res){
+   res.send(req.url);
+});
+//app.use('/formDataSecure', myRoute, function(req, res){
+//   res.send(req.url);
+//});
 app.get('/emotionList.json', function(req, res){
    console.log(JSON.stringify(req.body));
    res.sendFile(path.join(__dirname + '/emotionList.json'));
