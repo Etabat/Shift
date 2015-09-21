@@ -102,32 +102,47 @@ toggleStressLog.addEventListener('click',  function(event) {
     populate(event);
     addEmotionsList(event);
 }, true);
-function addThought(event){
-    var thoughtList = document.querySelector('.list-group');
-    var thoughtItem = document.createElement('div');
+function clickME(event){
+    if(event.target == document.getElementById('addThought')) {
+        var thoughtList = document.querySelector('.list-group');
+        var thoughtItem = document.createElement('div');
         thoughtItem.className = 'list-group-item';
-    thoughtList.appendChild(thoughtItem);
-    var inputGroup = document.createElement('div');
+        thoughtList.appendChild(thoughtItem);
+        var inputGroup = document.createElement('div');
         inputGroup.className = 'input-group';
-    thoughtItem.appendChild(inputGroup);
-    var thoughtInput = document.getElementById('thoughtInput');
-    var listItem = document.createElement('p');
-    listItem.textContent = thoughtInput.value;
-    inputGroup.appendChild(listItem);
-    var removeItemWrapper = document.createElement('span');
+        thoughtItem.appendChild(inputGroup);
+        var thoughtInput = document.getElementById('thoughtInput');
+        var listItem = document.createElement('p');
+        listItem.textContent = thoughtInput.value;
+        inputGroup.appendChild(listItem);
+        var removeItemWrapper = document.createElement('span');
         removeItemWrapper.className = 'input-group-btn';
-    inputGroup.appendChild(removeItemWrapper);
-    var removeThought = document.createElement('button');
+        inputGroup.appendChild(removeItemWrapper);
+        var removeThought = document.createElement('button');
         removeThought.className = 'btn btn-danger btn-xs';
         removeThought.setAttribute('id', 'removeThought');
         removeThought.setAttribute('type', 'button');
         removeThought.textContent = 'x';
-    removeItemWrapper.appendChild(removeThought);
-    thoughtInput.value = '';
-    console.log(event.target);
+        removeItemWrapper.appendChild(removeThought);
+        thoughtInput.value = '';
+        console.log(event.target);
+    }
+    if(event.target == document.getElementById('removeThought')){
+        var removeItem = event.target.parentNode.parentNode.parentNode;
+        removeItem.parentNode.removeChild(removeItem);
+    }
 }
-var add = document.getElementById('addThought');
-add.addEventListener('click', function(event){
+var parent = document.getElementById('sectionThree');
+parent.addEventListener('click', function(event){
     event.preventDefault();
-    addThought(event);
-},  false);
+    clickME(event);
+}, false);
+//// MUTATIONS
+//var observer = new WebKitMutationObserver(function(mutations){
+//    // Handle changes all-at-once
+//    // [mutations] is just a list of 'stuff that happened'
+//});
+//observer.observe(document, {
+//    childList: true,
+//    subtree: true
+//});
