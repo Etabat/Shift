@@ -4,9 +4,52 @@ function addEmotionsList(event){
             autocomplete: {
                 source: JSON.parse(list),
                 delay: 100,
-                minLength: 2
+                minLength: 2,
+                limit: 5,
+                beautify: false,
+                active: true
             },
             showAutocompleteOnFocus: false
+        }).on('tokenfield:createdtoken', function () {
+            var emotionInputs = $('#tokenfield').tokenfield('getTokensList').split(', ');
+            var lastEmotionInput = emotionInputs[emotionInputs.length-1];
+            //console.log(lastEmotionInput);
+            //console.log(emotionInputs);
+            function setAttributes(element, attrs) {
+                for(var key in attrs) {
+                    element.setAttribute(key, attrs[key]);
+                }
+            }
+            var formGroup = document.createElement('div');
+            formGroup.className = 'form-group' + lastEmotionInput;
+            document.getElementById('sectionTwo').appendChild(formGroup);
+            var newLabel = document.createElement('label');
+            setAttributes(newLabel, {"for": "percentageOf" + lastEmotionInput, "class": "range"});
+            newLabel.textContent = lastEmotionInput;
+            formGroup.appendChild(newLabel);
+            var newInput = document.createElement('input');
+            setAttributes(newInput, {"id": "percentageOf" + lastEmotionInput, "type": "range", "name": "range", "min": "0", "max": "100", "value": "50", "step": "5"});
+            formGroup.appendChild(newInput);
+            var newOutput = document.createElement('output');
+            setAttributes(newOutput, {"id": "resultOf" + lastEmotionInput});
+            formGroup.appendChild(newOutput);
+            (function(emotion){
+                var range = document.getElementById('percentageOf' + emotion);
+                //console.log(range);
+                var output = document.getElementById('resultOf' + lastEmotionInput);
+                range.addEventListener('input', function() {
+                    output.innerHTML = '<b>' + range.value + '%</b>';
+                }, false);
+            })(lastEmotionInput);
+        }).on('tokenfield:createtoken', function (event) {
+            var existingTokens = $(this).tokenfield('getTokens');
+            $.each(existingTokens, function (index, token) {
+                if (token.value === event.attrs.value)
+                    event.preventDefault();
+            });
+        }).on('tokenfield:removedtoken', function(e){
+            var lastEmotionInput = document.querySelector('.form-group' + e.attrs.value);
+            lastEmotionInput.parentNode.removeChild(lastEmotionInput);
         });
     }
     var xhr = new XMLHttpRequest();
@@ -14,7 +57,6 @@ function addEmotionsList(event){
         if((xhr.status === 200) || (xhr.status === 304)){
             var list = xhr.responseText;
             fetchEmotions(list);
-            console.log(document.activeElement);
             event.preventDefault();
         }
         else {
@@ -46,7 +88,6 @@ function populate(event){
             var response = xhr.responseText;
             var sections = JSON.parse(response);
             var sectionOne = sections.stressLog;
-            console.log(sectionOne);
             addWorksheets(sectionOne);
         }
         else {
