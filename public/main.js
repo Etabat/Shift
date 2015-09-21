@@ -1,3 +1,9 @@
+window.onload = function() {
+    loadStressLogHistory();
+};
+function loadStressLogHistory(){
+    alert("Test, window has loaded all objects");
+}
 function addOrRemoveEmotionsList(event){
     function fetchEmotions(list) {
         $('#tokenfield').tokenfield({
@@ -155,13 +161,11 @@ function validateData(e) {
     xhr.send(formData());
     function formData() {
         var userInputs = new Object();
-        //var collections = document.forms[0];
         userInputs.eventDate = document.getElementById('eventDate').value;
         console.log(userInputs.eventDate);
         userInputs.eventDescription = document.getElementById('eventDescription').value;
         userInputs.emotionsAndRange = {};
         var userEmotions = document.getElementById('tokenfield').value.split(', ');
-        //var userEmotionsRange = document.getElementById('percentageOfAnger')
         for(var emotionIndex = 0; emotionIndex < userEmotions.length; emotionIndex++){
             userInputs.emotionsAndRange["emotion" + emotionIndex] = userEmotions[emotionIndex];
             var range = document.getElementById('percentageOf' + userEmotions[emotionIndex]);
