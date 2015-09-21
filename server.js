@@ -3,7 +3,7 @@ var app = express();
 var path = require('path');
 var myRoute = require('./router');
 app.use(express.static(__dirname + '/public'));
-app.use('/hithisisphone',  myRoute, function(req, res){
+app.use('/secureFormData',  myRoute, function(req, res){
    res.send(req.url);
 });
 //app.use('/formDataSecure', myRoute, function(req, res){

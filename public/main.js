@@ -1,4 +1,4 @@
-function addEmotionsList(event){
+function addOrRemoveEmotionsList(event){
     function fetchEmotions(list) {
         $('#tokenfield').tokenfield({
             autocomplete: {
@@ -66,7 +66,7 @@ function addEmotionsList(event){
     xhr.open('GET', './emotionList.json', true);
     xhr.send();
 }
-function populate(event){
+function populateForm(event){
     event.preventDefault();
     function addWorksheets(sectionOne) {
     var subtitles = document.querySelectorAll('form h3');
@@ -99,10 +99,10 @@ function populate(event){
 }
 var toggleStressLog = document.getElementById('toggleStressLog');
 toggleStressLog.addEventListener('click',  function(event) {
-    populate(event);
-    addEmotionsList(event);
+    populateForm(event);
+    addOrRemoveEmotionsList(event);
 }, true);
-function clickME(event){
+function addOrRemoveThoughts(event){
     if(event.target == document.getElementById('addThought')) {
         var thoughtList = document.querySelector('.list-group');
         var thoughtItem = document.createElement('div');
@@ -125,24 +125,58 @@ function clickME(event){
         removeThought.textContent = 'x';
         removeItemWrapper.appendChild(removeThought);
         thoughtInput.value = '';
-        console.log(event.target);
     }
     if(event.target == document.getElementById('removeThought')){
         var removeItem = event.target.parentNode.parentNode.parentNode;
         removeItem.parentNode.removeChild(removeItem);
     }
 }
-var parent = document.getElementById('sectionThree');
-parent.addEventListener('click', function(event){
+var thoughtForm = document.getElementById('sectionThree');
+thoughtForm.addEventListener('click', function(event){
     event.preventDefault();
-    clickME(event);
+    addOrRemoveThoughts(event);
 }, false);
-//// MUTATIONS
-//var observer = new WebKitMutationObserver(function(mutations){
-//    // Handle changes all-at-once
-//    // [mutations] is just a list of 'stuff that happened'
-//});
-//observer.observe(document, {
-//    childList: true,
-//    subtree: true
-//});
+function validateData(e) {
+    var xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', function(e) {
+        if((xhr.status === 200) || (xhr.status === 304)){
+            alert('Yeah! Data sent and response loaded.');
+        }
+        else {
+            alert(e.target.responseText);
+        }
+    });
+    xhr.addEventListener("error", function() {
+        alert('Something went wrong.');
+    });
+    xhr.open('GET', './secureFormData/formData.json', true);
+    xhr.open("POST","./secureFormData/formData.json",true);
+    xhr.setRequestHeader("Content-type","application/json");
+    xhr.send(formData());
+    function formData() {
+        var userInputs = new Object();
+        //var collections = document.forms[0];
+        userInputs.eventDate = document.getElementById('eventDate').value;
+        console.log(userInputs.eventDate);
+        userInputs.eventDescription = document.getElementById('eventDescription').value;
+        userInputs.emotionsAndRange = {};
+        var userEmotions = document.getElementById('tokenfield').value.split(', ');
+        //var userEmotionsRange = document.getElementById('percentageOfAnger')
+        for(var emotionIndex = 0; emotionIndex < userEmotions.length; emotionIndex++){
+            userInputs.emotionsAndRange["emotion" + emotionIndex] = userEmotions[emotionIndex];
+            var range = document.getElementById('percentageOf' + userEmotions[emotionIndex]);
+            userInputs.emotionsAndRange["percentageOf" + userEmotions[emotionIndex]] = range.value;
+        }
+        userInputs.automaticNegativeThoughts = {};
+        var allThoughts = document.querySelectorAll('#sectionThree .list-group p');
+        for(var thoughtIndex = 0; thoughtIndex < allThoughts.length; thoughtIndex++) {
+            userInputs.automaticNegativeThoughts["thought" + [thoughtIndex]] = allThoughts[thoughtIndex].innerText;
+        }
+        return JSON.stringify(userInputs);
+    }
+    e.preventDefault();
+}
+var button = document.getElementById('submit');
+button.addEventListener('click', function(e) {
+    validateData(e)
+}, true);
