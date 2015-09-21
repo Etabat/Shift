@@ -13,8 +13,6 @@ function addEmotionsList(event){
         }).on('tokenfield:createdtoken', function () {
             var emotionInputs = $('#tokenfield').tokenfield('getTokensList').split(', ');
             var lastEmotionInput = emotionInputs[emotionInputs.length-1];
-            //console.log(lastEmotionInput);
-            //console.log(emotionInputs);
             function setAttributes(element, attrs) {
                 for(var key in attrs) {
                     element.setAttribute(key, attrs[key]);
@@ -35,7 +33,6 @@ function addEmotionsList(event){
             formGroup.appendChild(newOutput);
             (function(emotion){
                 var range = document.getElementById('percentageOf' + emotion);
-                //console.log(range);
                 var output = document.getElementById('resultOf' + lastEmotionInput);
                 range.addEventListener('input', function() {
                     output.innerHTML = '<b>' + range.value + '%</b>';
@@ -105,3 +102,32 @@ toggleStressLog.addEventListener('click',  function(event) {
     populate(event);
     addEmotionsList(event);
 }, true);
+function addThought(event){
+    var thoughtList = document.querySelector('.list-group');
+    var thoughtItem = document.createElement('div');
+        thoughtItem.className = 'list-group-item';
+    thoughtList.appendChild(thoughtItem);
+    var inputGroup = document.createElement('div');
+        inputGroup.className = 'input-group';
+    thoughtItem.appendChild(inputGroup);
+    var thoughtInput = document.getElementById('thoughtInput');
+    var listItem = document.createElement('p');
+    listItem.textContent = thoughtInput.value;
+    inputGroup.appendChild(listItem);
+    var removeItemWrapper = document.createElement('span');
+        removeItemWrapper.className = 'input-group-btn';
+    inputGroup.appendChild(removeItemWrapper);
+    var removeThought = document.createElement('button');
+        removeThought.className = 'btn btn-danger btn-xs';
+        removeThought.setAttribute('id', 'removeThought');
+        removeThought.setAttribute('type', 'button');
+        removeThought.textContent = 'x';
+    removeItemWrapper.appendChild(removeThought);
+    thoughtInput.value = '';
+    console.log(event.target);
+}
+var add = document.getElementById('addThought');
+add.addEventListener('click', function(event){
+    event.preventDefault();
+    addThought(event);
+},  false);
