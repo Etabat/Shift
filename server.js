@@ -4,6 +4,7 @@ var path = require('path');
 var myRoute = require('./router');
 app.use(express.static(__dirname + '/public'));
 app.use('/secureFormData',  myRoute, function(req, res){
+   console.log('OOPS> STOPS HERE');
    res.send(req.url);
 });
 app.get('/emotionList.json', function(req, res){
