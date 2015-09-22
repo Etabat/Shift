@@ -11,6 +11,7 @@ router.get('/formData.json', function(req, res){
 router.post('/formData.json', jsonParser ,function (req, res) {
     console.log(JSON.stringify(req.body));
     fs.writeFile('./formData.json' , JSON.stringify(req.body), function(error){
+        // Create files?
         if (error){throw error}
         console.log('success writing file to ' + req.url);
     });

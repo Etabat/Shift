@@ -1,0 +1,17 @@
+{"eventDate":"2015-09-08T20:35",
+  "eventDescription":"I was at home getting ready to go out and meet my friend. It was a late day at work so I was really tired and looking forward to getting out of the house. My girlfriend was away on a business trip so I was alone at home.\nThe friend I was supposed to meet stood me up.",
+  "emotionsAndRange": {
+    "emotion0":"Anger",
+    "percentageOfAnger":"90",
+    "emotion1":"Disappointment",
+    "percentageOfDisappointment":"60",
+    "emotion2":"Humiliation",
+    "percentageOfHumiliation":"70",
+    "emotion3":"Sadness",
+    "percentageOfSadness":"80"},
+  "automaticNegativeThoughts":{
+    "thought0":"People don't want to be friends with me.",
+    "thought1":"I will end up alone.",
+    "thought2":"This always happens when I try to make friends. Nobody likes me."
+  }
+}

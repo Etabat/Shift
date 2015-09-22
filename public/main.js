@@ -1,9 +1,3 @@
-window.onload = function() {
-    loadStressLogHistory();
-};
-function loadStressLogHistory(){
-    alert("Test, window has loaded all objects");
-}
 function addOrRemoveEmotionsList(event){
     function fetchEmotions(list) {
         $('#tokenfield').tokenfield({
