@@ -6,9 +6,6 @@ app.use(express.static(__dirname + '/public'));
 app.use('/secureFormData',  myRoute, function(req, res){
    res.send(req.url);
 });
-//app.use('/formDataSecure', myRoute, function(req, res){
-//   res.send(req.url);
-//});
 app.get('/emotionList.json', function(req, res){
    console.log(JSON.stringify(req.body));
    res.sendFile(path.join(__dirname + '/emotionList.json'));

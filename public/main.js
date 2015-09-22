@@ -149,8 +149,8 @@ function validateData(e) {
     xhr.addEventListener("error", function() {
         alert('Something went wrong.');
     });
-    xhr.open('GET', './secureFormData/formData.json', true);
-    xhr.open("POST","./secureFormData/formData.json",true);
+    xhr.open('GET', './secureFormData/answers:777', true);
+    xhr.open('POST','./secureFormData/answers:777', true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(formData());
     function formData() {
@@ -164,13 +164,11 @@ function validateData(e) {
             var range = document.getElementById('percentageOf' + userEmotions[emotionIndex]);
             userInputs.emotionsAndRange[userEmotions[emotionIndex]] = range.value;
         }
-        //userInputs.automaticNegativeThoughts = {};
         userInputs.automaticNegativeThoughts = [];
         var allThoughts = document.querySelectorAll('#sectionThree .list-group p');
         console.log(allThoughts);
         for(var thoughtIndex = 0; thoughtIndex < allThoughts.length; thoughtIndex++) {
             userInputs.automaticNegativeThoughts.push(allThoughts[thoughtIndex].innerText);
-            //userInputs.automaticNegativeThoughts["thought" + [thoughtIndex]] = allThoughts[thoughtIndex].innerText;
         }
         return JSON.stringify(userInputs);
     }
