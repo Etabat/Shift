@@ -156,19 +156,21 @@ function validateData(e) {
     function formData() {
         var userInputs = new Object();
         userInputs.eventDate = document.getElementById('eventDate').value;
-        console.log(userInputs.eventDate);
         userInputs.eventDescription = document.getElementById('eventDescription').value;
         userInputs.emotionsAndRange = {};
         var userEmotions = document.getElementById('tokenfield').value.split(', ');
+        console.log(userEmotions);
         for(var emotionIndex = 0; emotionIndex < userEmotions.length; emotionIndex++){
-            userInputs.emotionsAndRange["emotion" + emotionIndex] = userEmotions[emotionIndex];
             var range = document.getElementById('percentageOf' + userEmotions[emotionIndex]);
-            userInputs.emotionsAndRange["percentageOf" + userEmotions[emotionIndex]] = range.value;
+            userInputs.emotionsAndRange[userEmotions[emotionIndex]] = range.value;
         }
-        userInputs.automaticNegativeThoughts = {};
+        //userInputs.automaticNegativeThoughts = {};
+        userInputs.automaticNegativeThoughts = [];
         var allThoughts = document.querySelectorAll('#sectionThree .list-group p');
+        console.log(allThoughts);
         for(var thoughtIndex = 0; thoughtIndex < allThoughts.length; thoughtIndex++) {
-            userInputs.automaticNegativeThoughts["thought" + [thoughtIndex]] = allThoughts[thoughtIndex].innerText;
+            userInputs.automaticNegativeThoughts.push(allThoughts[thoughtIndex].innerText);
+            //userInputs.automaticNegativeThoughts["thought" + [thoughtIndex]] = allThoughts[thoughtIndex].innerText;
         }
         return JSON.stringify(userInputs);
     }

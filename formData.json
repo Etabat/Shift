@@ -1,17 +1,1 @@
-{"eventDate":"2015-09-08T20:35",
-  "eventDescription":"I was at home getting ready to go out and meet my friend. It was a late day at work so I was really tired and looking forward to getting out of the house. My girlfriend was away on a business trip so I was alone at home.\nThe friend I was supposed to meet stood me up.",
-  "emotionsAndRange": {
-    "emotion0":"Anger",
-    "percentageOfAnger":"90",
-    "emotion1":"Disappointment",
-    "percentageOfDisappointment":"60",
-    "emotion2":"Humiliation",
-    "percentageOfHumiliation":"70",
-    "emotion3":"Sadness",
-    "percentageOfSadness":"80"},
-  "automaticNegativeThoughts":{
-    "thought0":"People don't want to be friends with me.",
-    "thought1":"I will end up alone.",
-    "thought2":"This always happens when I try to make friends. Nobody likes me."
-  }
-}
+{"eventDate":"2015-09-04T22:30","eventDescription":"I was sitting at home and received a message from my friend. I was also tired from working 15 hours...\t\n","emotionsAndRange":{"Anger":"65","Annoyance":"40","Dislike":"65","Displeasure":"65"},"automaticNegativeThoughts":["Nobody wants to be friends with me.","I have no friends.","I'm going to die alone."]}
