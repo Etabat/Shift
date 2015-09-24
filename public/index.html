@@ -1,304 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Shift</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-        <link rel="stylesheet" href="bootstrap-tokenfield.min.css">
-        <link rel="stylesheet" href="main.css">
-    </head>
-    <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">SHIFT - challenge your mind</a>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shift</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="bootstrap-tokenfield.min.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">SHIFT - challenge your mind</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Inbox <span class="badge">42</span></a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">John Doe <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Manage Account</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Inbox <span class="badge">42</span></a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+  <button class="btn btn-primary" id="toggleStressLog" type="button" data-toggle="collapse" data-target="#collapseStressLog" aria-expanded="false" aria-controls="collapseStressLog">
+    Show/Hide
+  </button>
+  <div class="collapse" id="collapseStressLog">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="well well-lg">
+          <form id="sectionOne">
+            <div>
+              <h3>SUBTITLE PLACEHOLDER</h3>
+              <label for="eventDate">Date and time</label>
+              <input type="datetime-local" class="form-control" id="eventDate" required>
+              <h3>SUBTITLE PLACEHOLDER 2</h3>
+              <p>DESCRIPTION PLACEHOLDER</p>
+              <label for="eventDescription">Details</label>
+              <textarea class="form-control" id="eventDescription" rows="3" placeholder="Describe the situation here..."></textarea>
+              <div class="form-group">
+              </div>
             </div>
-            <div class="collapse navbar-collapse" id="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Inbox <span class="badge">42</span></a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">John Doe <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Manage Account</a></li>
-                            <li><a href="#">Support</a></li>
-                            <li><a href="#">Inbox <span class="badge">42</span></a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+          </form>
         </div>
-    </nav>
-    <div class="container-fluid">
-        <button class="btn btn-primary" id="toggleStressLog" type="button" data-toggle="collapse" data-target="#collapseStressLog" aria-expanded="false" aria-controls="collapseStressLog">
-            Show/Hide
-        </button>
-        <div class="collapse" id="collapseStressLog">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="well well-lg">
-                        <form id="sectionOne">
-                            <div>
-                                <h3>SUBTITLE PLACEHOLDER</h3>
-                                <label for="eventDate">Date and time</label>
-                                <input type="datetime-local" class="form-control" id="eventDate" required>
-                                <h3>SUBTITLE PLACEHOLDER 2</h3>
-                                <p>DESCRIPTION PLACEHOLDER</p>
-                                <label for="eventDescription">Details</label>
-                                <textarea class="form-control" id="eventDescription" rows="3" placeholder="Describe the situation here..."></textarea>
-                                <div class="form-group">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="well well-lg">
-                        <form id="sectionTwo">
-                            <div class="form-group">
-                                <h3>SUBTITLE PLACEHOLDER</h3>
-                                <p>DESCRIPTION</p>
-                                <label for="tokenfield">If you do not a suitable word in the list,
-                                    please type your own and hit enter.</label>
-                                <input type="text" class="form-control" id="tokenfield" value="">
-                            </div>
-                            <hr>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="well well-lg">
-                        <form id="sectionThree">
-                            <h3>SUBTITLE PLACEHOLDER</h3>
-                            <p>DESCRIPTION</p>
-                            <div class="form-group">
-                                <div class="input-group">
+      </div>
+      <div class="col-lg-4">
+        <div class="well well-lg">
+          <form id="sectionTwo">
+            <div class="form-group">
+              <h3>SUBTITLE PLACEHOLDER</h3>
+              <p>DESCRIPTION</p>
+              <label for="tokenfield">If you do not a suitable word in the list,
+                please type your own and hit enter.</label>
+              <input type="text" class="form-control" id="tokenfield" value="">
+            </div>
+            <hr>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="well well-lg">
+          <form id="sectionThree">
+            <h3>SUBTITLE PLACEHOLDER</h3>
+            <p>DESCRIPTION</p>
+            <div class="form-group">
+              <div class="input-group">
                                         <span class="input-group-btn">
                                            <button class="btn btn-info" id="addThought" type="button">+</button>
                                         </span>
-                                    <input class="form-control" id="thoughtInput" type="text" placeholder="Enter thoughts here..." required>
-                                </div><!-- /input-group -->
-                                <p class="help-block hidden" id="thoughtFeedback">Please enter a thought...</p>
-                            </div><!-- form group -->
-                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingOne">
-                                        <h4 class="panel-title">
-                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                View Entered Thoughts <span class="badge"></span>
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" >
-                                        <div class="list-group">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button formaction="/" type="submit" class="btn btn-primary" id="submit" >Submit</button>
-                        </form>
-                    </div>
+                <input class="form-control" id="thoughtInput" type="text" placeholder="Enter thoughts here..." required>
+              </div><!-- /input-group -->
+              <p class="help-block hidden" id="thoughtFeedback">Please enter a thought...</p>
+            </div><!-- form group -->
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                  <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      View Entered Thoughts <span class="badge"></span>
+                    </a>
+                  </h4>
                 </div>
+                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" >
+                  <div class="list-group">
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="container-fluid">
-                <div class="well well-lg" id="stressLogHistory">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Situation</th>
-                                <th>
-                                    <p>Emotions and Feelings</p>
-                                    <p>(During the event)</p>
-                                </th>
-                                <th>Automatic Thoughts <br>
-                                    (click to challenge)
-                                </th>
-                                <th>
-                                    <p>Emotions and Feelings</p>
-                                    <p>(After completing Thought Challenge)</p>
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>09/18/2015 10:27 PM</td>
-                                    <td>I was sitting at home and received a message from my friend. I was also tired from working 15 hours...</td>
-                                    <td class="loggedEmotions">
-                                        <p data-emotion="Disappointed" data-range="80">Disappointed (80%)<p>
-                                        <p data-emotion="Angry" data-range="60">Angry (60%)</p>
-                                        <p data-emotion="Unworthy" data-range="70">Unworthy (70%)</p>
-                                    </td>
-                                    <td class="tdNegativeThoughts">
-                                        <p class="negativeThoughts" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">Nobody wants to be friends with me.</p>
-                                        <p class="negativeThoughts" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">I have no friends.</p>
-                                        <p class="negativeThoughts" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">I'm going to die alone.</p>
-                                    </td>
-                                    <td>Disappointed (  %)<br>
-                                        Angry (  %)<br>
-                                        Unworthy (  %)
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>09/18/2015 10:27 PM</td>
-                                    <td>I was sitting at home and received a message from my friend. I was also tired from working 15 hours...</td>
-                                    <td class="loggedEmotions">
-                                        <p>Disappointed (80%)<p>
-                                        <p>Angry (60%)</p>
-                                        <p>Unworthy (70%)</p>
-                                    </td>
-                                    <td class="tdNegativeThoughts">
-                                        <p class="negativeThoughts" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">Nobody wants to be friends with me.</p>
-                                        <p class="negativeThoughts" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">I have no friends.</p>
-                                        <p class="negativeThoughts" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">I'm going to die alone.</p>
-                                    </td>
-                                    <td>Disappointed (  %)<br>
-                                        Angry (  %)<br>
-                                        Unworthy (  %)
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <button formaction="/" type="submit" class="btn btn-primary" id="submit" >Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="well well-lg" id="stressLogHistory">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th>Date</th>
+              <th>Situation</th>
+              <th>
+                <p>Emotions and Feelings</p>
+                <p>(During the event)</p>
+              </th>
+              <th>Automatic Thoughts <br>
+                (click to challenge)
+              </th>
+              <th>
+                <p>Emotions and Feelings</p>
+                <p>(After completing Thought Challenge)</p>
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>09/18/2015 10:27 PM</td>
+              <td>I was sitting at home and received a message from my friend. I was also tired from working 15 hours...</td>
+              <td class="loggedEmotions">
+                <p data-emotion="Disappointed" data-range="80">Disappointed (80%)<p>
+                <p data-emotion="Angry" data-range="60">Angry (60%)</p>
+                <p data-emotion="Unworthy" data-range="70">Unworthy (70%)</p>
+              </td>
+              <td class="tdNegativeThoughts">
+                <p class="negativeThoughts" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">Nobody wants to be friends with me.</p>
+                <p class="negativeThoughts" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">I have no friends.</p>
+                <p class="negativeThoughts" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">I'm going to die alone.</p>
+              </td>
+              <td>Disappointed (  %)<br>
+                Angry (  %)<br>
+                Unworthy (  %)
+              </td>
+            </tr>
+            <tr>
+              <td>09/18/2015 10:27 PM</td>
+              <td>I was sitting at home and received a message from my friend. I was also tired from working 15 hours...</td>
+              <td class="loggedEmotions">
+                <p>Disappointed (80%)<p>
+                <p>Angry (60%)</p>
+                <p>Unworthy (70%)</p>
+              </td>
+              <td class="tdNegativeThoughts">
+                <p class="negativeThoughts" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">Nobody wants to be friends with me.</p>
+                <p class="negativeThoughts" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">I have no friends.</p>
+                <p class="negativeThoughts" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">I'm going to die alone.</p>
+              </td>
+              <td>Disappointed (  %)<br>
+                Angry (  %)<br>
+                Unworthy (  %)
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-                <!-- Modal -->
+      <!-- Modal -->
 
 
-                <h2>Example of using events of Modal Plugin</h2>
+      <h2>Example of using events of Modal Plugin</h2>
 
 
-                <div class="modal" id="thoughtChallengeEvidenceFor" tabindex="-1" role="dialog" aria-labelledby="thoughtChallengeEvidenceFor" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h2 class="modal-title">Thought Challenge</h2>
-                                <h3 class="modal-title hotThought">[SELECTED HOT THOUGHT]</h3>
-                            </div>
-                            <div class="modal-body">
-                                <h3>Step 1: Evidence that supports the thought</h3>
-                                <p>What facts support the truthfulness of this thought or image?</p>
-                                <form>
-                                    <label for="evidenceFor"></label>
-                                    <textarea id="evidenceFor" class="form-control" rows="3" placeholder="What facts support the truthfulness of this thought or image?"></textarea>
-                                    <div class="input-group">
+      <div class="modal" id="thoughtChallengeEvidenceFor" tabindex="-1" role="dialog" aria-labelledby="thoughtChallengeEvidenceFor" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h2 class="modal-title">Thought Challenge</h2>
+              <h3 class="modal-title hotThought">[SELECTED HOT THOUGHT]</h3>
+            </div>
+            <div class="modal-body">
+              <h3>Step 1: Evidence that supports the thought</h3>
+              <p>What facts support the truthfulness of this thought or image?</p>
+              <form>
+                <label for="evidenceFor"></label>
+                <textarea id="evidenceFor" class="form-control" rows="3" placeholder="What facts support the truthfulness of this thought or image?"></textarea>
+                <div class="input-group">
                                         <span class="input-group-btn">
                                             <button class="btn btn-info" id="addthoughtEvidenceFor" type="button">+</button>
                                         </span>
-                                        <input class="form-control" id="thoughtEvidenceFor" type="text" placeholder="Enter thoughts here..." required>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeEvidenceAgainst">Next</button>
-                            </div>
-                        </div>
-                    </div>
+                  <input class="form-control" id="thoughtEvidenceFor" type="text" placeholder="Enter thoughts here..." required>
                 </div>
-                <div class="modal" id="thoughtChallengeEvidenceAgainst" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h2 class="modal-title">Thought Challenge</h2>
-                                <h3 class="modal-title hotThought">[SELECTED HOT THOUGHT]</h3>
-                            </div>
-                            <div class="modal-body">
-                                <h3>Step 2: Evidence that does <i>not</i> support the thought</h3>
-                                <p>What experiences indicate that this thought is not completely true all of the time?</p>
-                                <p>If my best friend had this thought what would I tell them?</p>
-                                <p>Are there any small experiences which contradict this thought?</p>
-                                <p>Could I be jumping to conclusions?</p>
-                                <form>
-                                    <label for="evidenceAgainst"></label>
-                                    <textarea id="evidenceAgainst" class="form-control" rows="3" placeholder="Begin writing here..."></textarea>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">Back</button>
-                                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeBalancedThought">Next</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal" id="thoughtChallengeBalancedThought" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h2 class="modal-title" id="balancedThought">Thought Challenge</h2>
-                                <h3 class="modal-title hotThought">[SELECTED HOT THOUGHT]</h3>
-                            </div>
-                            <div class="modal-body">
-                                <h3>Step 3: Alternative thought</h3>
-                                <p>Write a new thought (or thoughts) which takes into account the evidence for and against the original thought</p>
-                                <form>
-                                    <label for="alternativeThought"></label>
-                                    <textarea id="alternativeThought" class="form-control" rows="3" placeholder="What are some other ways of thinking about this situation?"></textarea>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeEvidenceAgainst">Back</button>
-                                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeRateEmotions">Next</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal" id="thoughtChallengeRateEmotions" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h2 class="modal-title" id="re-rateEmotions">Thought Challenge</h2>
-                                <h3 class="modal-title hotThought">[SELECTED HOT THOUGHT]</h3>
-                            </div>
-                            <div class="modal-body">
-                                <h3>Step 4: Emotions or feelings</h3>
-                                <p>How do you feel about the situation now? Re-rate your original emotions or feelings: 0 - 100</p>
-                                <form>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeBalancedThought">Back</button>
-                                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-primary" data-dismiss="modal" id="submitThoughtChallenge">Save changes</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-
-
-
-
+              </form>
             </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeEvidenceAgainst">Next</button>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="modal" id="thoughtChallengeEvidenceAgainst" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h2 class="modal-title">Thought Challenge</h2>
+              <h3 class="modal-title hotThought">[SELECTED HOT THOUGHT]</h3>
+            </div>
+            <div class="modal-body">
+              <h3>Step 2: Evidence that does <i>not</i> support the thought</h3>
+              <p>What experiences indicate that this thought is not completely true all of the time?</p>
+              <p>If my best friend had this thought what would I tell them?</p>
+              <p>Are there any small experiences which contradict this thought?</p>
+              <p>Could I be jumping to conclusions?</p>
+              <form>
+                <label for="evidenceAgainst"></label>
+                <textarea id="evidenceAgainst" class="form-control" rows="3" placeholder="Begin writing here..."></textarea>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">Back</button>
+              <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeBalancedThought">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal" id="thoughtChallengeBalancedThought" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h2 class="modal-title" id="balancedThought">Thought Challenge</h2>
+              <h3 class="modal-title hotThought">[SELECTED HOT THOUGHT]</h3>
+            </div>
+            <div class="modal-body">
+              <h3>Step 3: Alternative thought</h3>
+              <p>Write a new thought (or thoughts) which takes into account the evidence for and against the original thought</p>
+              <form>
+                <label for="alternativeThought"></label>
+                <textarea id="alternativeThought" class="form-control" rows="3" placeholder="What are some other ways of thinking about this situation?"></textarea>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeEvidenceAgainst">Back</button>
+              <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeRateEmotions">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal" id="thoughtChallengeRateEmotions" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h2 class="modal-title" id="re-rateEmotions">Thought Challenge</h2>
+              <h3 class="modal-title hotThought">[SELECTED HOT THOUGHT]</h3>
+            </div>
+            <div class="modal-body">
+              <h3>Step 4: Emotions or feelings</h3>
+              <p>How do you feel about the situation now? Re-rate your original emotions or feelings: 0 - 100</p>
+              <form>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeBalancedThought">Back</button>
+              <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary" data-dismiss="modal" id="submitThoughtChallenge">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
     </div>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-    <script src="bootstrap-tokenfield.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="shift.js"></script>
-    <script src="history.js"></script>
-    <script src="thought-exercise.js"></script>
-    </body>
+  </div>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="bootstrap-tokenfield.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="shift.js"></script>
+<script src="history.js">
+</script>
+<script src="exercise.js"></script>
+</body>
 </html>
+
 
