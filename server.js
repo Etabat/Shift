@@ -7,9 +7,9 @@ app.use('/secureFormData',  myRoute, function(req, res){
    console.log('OOPS> STOPS HERE');
    res.send(req.url);
 });
-app.get('/emotionList.json', function(req, res){
+app.get('/emotions.json', function(req, res){
    console.log(JSON.stringify(req.body));
-   res.sendFile(path.join(__dirname + '/emotionList.json'));
+   res.sendFile(path.join(__dirname + '/emotions.json'));
 });
 app.get('/worksheets.json', function(req, res){
    console.log(JSON.stringify(req.body));
