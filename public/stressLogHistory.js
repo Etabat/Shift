@@ -9,9 +9,12 @@ function loadStressLogHistory(){
         tableBody.appendChild(tableRow);
         var tdEventDate = document.createElement('td');
         tableRow.appendChild(tdEventDate);
+        console.log(stressLogSections.eventDate);
+        var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
         var fetchEventDate = new Date(stressLogSections.eventDate);
-        console.log(fetchEventDate);
-        tdEventDate.innerHTML = '<p>' + fetchEventDate + '</p>';
+        var localeEventDate = fetchEventDate.toLocaleString('en-US', options);
+        console.log(localeEventDate);
+        tdEventDate.innerHTML = '<p>' + localeEventDate + '</p>';
         var tdEventDescription = document.createElement('td');
         tdEventDescription.innerHTML = '<p>' + stressLogSections.eventDescription + '</p>';
         tableRow.appendChild(tdEventDescription);
@@ -31,6 +34,9 @@ function loadStressLogHistory(){
         for (var thoughts in negativeThoughts) {
             if (negativeThoughts.hasOwnProperty(thoughts)) {
                 var thoughtsParagraph = document.createElement('p');
+                thoughtsParagraph.className = 'negativeThoughts';
+                thoughtsParagraph.setAttribute('data-toggle', 'modal');
+                thoughtsParagraph.setAttribute('data-target', '#thoughtChallengeEvidenceFor');
                 tdNegativeThoughts.appendChild(thoughtsParagraph);
                 thoughtsParagraph.textContent = negativeThoughts[thoughts];
             }
@@ -49,8 +55,10 @@ function loadStressLogHistory(){
     xhr.addEventListener('load', function(e) {
         if((xhr.status === 200) || (xhr.status === 304)) {
             var response = xhr.responseText;
-            var stressLogSections = JSON.parse(response);
-            addStressLogSections(stressLogSections);
+            var stressLog = JSON.parse(response);
+            stressLog.forEach(function(stressLogSection){
+                addStressLogSections(stressLogSection);
+            });
         }
         else {
             alert(e.target.responseText);
@@ -59,6 +67,6 @@ function loadStressLogHistory(){
     xhr.addEventListener("error", function() {
         alert('Something goes wrong.');
     });
-    xhr.open('GET', './secureFormData/formData.json', true);
+    xhr.open('GET', './secureFormData/answers/5000', true);
     xhr.send();
 }
