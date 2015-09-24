@@ -1,6 +1,4 @@
-window.onload = function() {
     loadStressLogHistory();
-};
 function loadStressLogHistory(){
     function addStressLogSections(stressLogSections){
           var tableBody = document.createElement('tbody');
@@ -20,12 +18,16 @@ function loadStressLogHistory(){
         tableRow.appendChild(tdEventDescription);
         var emotionsAndRange = stressLogSections.emotionsAndRange;
         var tdEmotionsAndRange = document.createElement('td');
+        tdEmotionsAndRange.className = 'loggedEmotions';
         tableRow.appendChild(tdEmotionsAndRange);
         var tdNegativeThoughts = document.createElement('td');
+        tdNegativeThoughts.className = 'tdNegativeThoughts';
         tableRow.appendChild(tdNegativeThoughts);
         for (var key in emotionsAndRange) {
             if (emotionsAndRange.hasOwnProperty(key)) {
                 var emotionsParagraph = document.createElement('p');
+                emotionsParagraph.setAttribute('data-emotion', key);
+                emotionsParagraph.setAttribute('data-range', emotionsAndRange[key]);
                 tdEmotionsAndRange.appendChild(emotionsParagraph);
                 emotionsParagraph.textContent = key + ' ' + '(' + emotionsAndRange[key] + '%' + ')';
             }

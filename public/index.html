@@ -134,15 +134,33 @@
                                 <tr>
                                     <td>09/18/2015 10:27 PM</td>
                                     <td>I was sitting at home and received a message from my friend. I was also tired from working 15 hours...</td>
-                                    <td>
+                                    <td class="loggedEmotions">
+                                        <p data-emotion="Disappointed" data-range="80">Disappointed (80%)<p>
+                                        <p data-emotion="Angry" data-range="60">Angry (60%)</p>
+                                        <p data-emotion="Unworthy" data-range="70">Unworthy (70%)</p>
+                                    </td>
+                                    <td class="tdNegativeThoughts">
+                                        <p class="negativeThoughts" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">Nobody wants to be friends with me.</p>
+                                        <p class="negativeThoughts" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">I have no friends.</p>
+                                        <p class="negativeThoughts" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">I'm going to die alone.</p>
+                                    </td>
+                                    <td>Disappointed (  %)<br>
+                                        Angry (  %)<br>
+                                        Unworthy (  %)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>09/18/2015 10:27 PM</td>
+                                    <td>I was sitting at home and received a message from my friend. I was also tired from working 15 hours...</td>
+                                    <td class="loggedEmotions">
                                         <p>Disappointed (80%)<p>
                                         <p>Angry (60%)</p>
                                         <p>Unworthy (70%)</p>
                                     </td>
-                                    <td>
+                                    <td class="tdNegativeThoughts">
                                         <p class="negativeThoughts" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">Nobody wants to be friends with me.</p>
-                                        <p class="negativeThoughts">I have no friends.</p>
-                                        <p class="negativeThoughts">I'm going to die alone.</p>
+                                        <p class="negativeThoughts" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">I have no friends.</p>
+                                        <p class="negativeThoughts" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">I'm going to die alone.</p>
                                     </td>
                                     <td>Disappointed (  %)<br>
                                         Angry (  %)<br>
@@ -165,20 +183,26 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h3 class="modal-title">Thought Challenge</h3>
-                                <h3 class="modal-title">[SELECTED HOT THOUGHT]</h3>
+                                <h2 class="modal-title">Thought Challenge</h2>
+                                <h3 class="modal-title hotThought">[SELECTED HOT THOUGHT]</h3>
                             </div>
                             <div class="modal-body">
                                 <h3>Step 1: Evidence that supports the thought</h3>
                                 <p>What facts support the truthfulness of this thought or image?</p>
                                 <form>
                                     <label for="evidenceFor"></label>
-                                    <textarea id="evidenceFor" class="form-control" rows="3" placeholder="Be careful not to conflate feelings and hunches for evidence"></textarea>
+                                    <textarea id="evidenceFor" class="form-control" rows="3" placeholder="What facts support the truthfulness of this thought or image?"></textarea>
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-info" id="addthoughtEvidenceFor" type="button">+</button>
+                                        </span>
+                                        <input class="form-control" id="thoughtEvidenceFor" type="text" placeholder="Enter thoughts here..." required>
+                                    </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeEvidenceAgainst">Next</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeEvidenceAgainst">Next</button>
                             </div>
                         </div>
                     </div>
@@ -188,24 +212,24 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h3 class="modal-title">Thought Challenge</h3>
+                                <h2 class="modal-title">Thought Challenge</h2>
+                                <h3 class="modal-title hotThought">[SELECTED HOT THOUGHT]</h3>
                             </div>
                             <div class="modal-body">
                                 <h3>Step 2: Evidence that does <i>not</i> support the thought</h3>
-                                <h5>[SELECTED HOT THOUGHT]</h5>
                                 <p>What experiences indicate that this thought is not completely true all of the time?</p>
                                 <p>If my best friend had this thought what would I tell them?</p>
                                 <p>Are there any small experiences which contradict this thought?</p>
                                 <p>Could I be jumping to conclusions?</p>
                                 <form>
-                                    <label for="evidenceAgainst">What facts support the truthfulness of this thought or image?</label>
-                                    <textarea id="evidenceAgainst" class="form-control" rows="3" placeholder=""></textarea>
+                                    <label for="evidenceAgainst"></label>
+                                    <textarea id="evidenceAgainst" class="form-control" rows="3" placeholder="Begin writing here..."></textarea>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">Back</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeBalancedThought">Next</button>
+                                <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeEvidenceFor">Back</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeBalancedThought">Next</button>
                             </div>
                         </div>
                     </div>
@@ -215,21 +239,21 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h3 class="modal-title" id="balancedThought">Thought Challenge</h3>
-                                <h3 class="modal-title">[SELECTED HOT THOUGHT]</h3>
+                                <h2 class="modal-title" id="balancedThought">Thought Challenge</h2>
+                                <h3 class="modal-title hotThought">[SELECTED HOT THOUGHT]</h3>
                             </div>
                             <div class="modal-body">
                                 <h3>Step 3: Alternative thought</h3>
-                                <p>Write a new thought which takes into account the evidence for and against the original thought</p>
+                                <p>Write a new thought (or thoughts) which takes into account the evidence for and against the original thought</p>
                                 <form>
                                     <label for="alternativeThought"></label>
-                                    <textarea id="alternativeThought" class="form-control" rows="3" placeholder="Describe the situation here..."></textarea>
+                                    <textarea id="alternativeThought" class="form-control" rows="3" placeholder="What are some other ways of thinking about this situation?"></textarea>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeEvidenceAgainst">Back</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeRateEmotions">Next</button>
+                                <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeEvidenceAgainst">Back</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeRateEmotions">Next</button>
                             </div>
                         </div>
                     </div>
@@ -239,20 +263,18 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h3 class="modal-title" id="re-rateEmotions">Thought Challenge</h3>
-                                <h3 class="modal-title">[SELECTED HOT THOUGHT]</h3>
+                                <h2 class="modal-title" id="re-rateEmotions">Thought Challenge</h2>
+                                <h3 class="modal-title hotThought">[SELECTED HOT THOUGHT]</h3>
                             </div>
                             <div class="modal-body">
                                 <h3>Step 4: Emotions or feelings</h3>
                                 <p>How do you feel about the situation now? Re-rate your original emotions or feelings: 0 - 100</p>
                                 <form>
-                                    <label for="eventDescription">Details</label>
-                                    <textarea class="form-control" rows="3" placeholder="Describe the situation here..."></textarea>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeBalancedThought">Back</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#thoughtChallengeBalancedThought">Back</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
                                 <button type="submit" class="btn btn-primary" data-dismiss="modal" id="submitThoughtChallenge">Save changes</button>
                             </div>
                         </div>

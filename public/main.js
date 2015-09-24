@@ -34,6 +34,7 @@ function addOrRemoveEmotionsList(event){
             (function(emotion){
                 var range = document.getElementById('percentageOf' + emotion);
                 var output = document.getElementById('resultOf' + lastEmotionInput);
+                output.innerHTML = '<b>50%</b>';
                 range.addEventListener('input', function() {
                     output.innerHTML = '<b>' + range.value + '%</b>';
                 }, false);
