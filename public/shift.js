@@ -1,8 +1,8 @@
-function addOrRemoveEmotionsList(event){
-  function fetchEmotions(list) {
+function newRecord(event){
+  function fetch(catalog) {
     $('#tokenfield').tokenfield({
       autocomplete: {
-        source: JSON.parse(list),
+        source: JSON.parse(catalog),
         delay: 100,
         minLength: 2,
         limit: 5,
@@ -11,34 +11,34 @@ function addOrRemoveEmotionsList(event){
       },
       showAutocompleteOnFocus: false
     }).on('tokenfield:createdtoken', function () {
-      var emotionInputs = $('#tokenfield').tokenfield('getTokensList').split(', ');
-      var lastEmotionInput = emotionInputs[emotionInputs.length-1];
+      var emotion = $('#tokenfield').tokenfield('getTokensList').split(', ');
+      var lastEmotion = emotion[emotion.length-1];
       function setAttributes(element, attrs) {
         for(var key in attrs) {
           element.setAttribute(key, attrs[key]);
         }
       }
-      var formGroup = document.createElement('div');
-      formGroup.className = 'form-group' + lastEmotionInput;
-      document.getElementById('emotions').appendChild(formGroup);
-      var newLabel = document.createElement('label');
-      setAttributes(newLabel, {"for": "percent-" + lastEmotionInput, "class": "range"});
-      newLabel.textContent = lastEmotionInput;
-      formGroup.appendChild(newLabel);
-      var newInput = document.createElement('input');
-      setAttributes(newInput, {"id": "percent-" + lastEmotionInput, "type": "range", "name": "range", "min": "0", "max": "100", "value": "50", "step": "5"});
-      formGroup.appendChild(newInput);
-      var newOutput = document.createElement('output');
-      setAttributes(newOutput, {"id": "resultOf" + lastEmotionInput});
-      formGroup.appendChild(newOutput);
-      (function(emotion){
-        var range = document.getElementById('percent-' + emotion);
-        var output = document.getElementById('resultOf' + lastEmotionInput);
+      var collection = document.createElement('div');
+      collection.className = 'form-group' + lastEmotion;
+      document.getElementById('emotions').appendChild(collection);
+      var label = document.createElement('label');
+      setAttributes(label, {"for": "percent-" + lastEmotion, "class": "range"});
+      label.textContent = lastEmotion;
+      collection.appendChild(label);
+      var addRange = document.createElement('input');
+      setAttributes(addRange, {"id": "percent-" + lastEmotion, "type": "range", "name": "range", "min": "0", "max": "100", "value": "50", "step": "5"});
+      collection.appendChild(addRange);
+      var intensity = document.createElement('output');
+      setAttributes(intensity, {"id": "resultOf" + lastEmotion});
+      collection.appendChild(intensity);
+      (function(last){
+        var range = document.getElementById('percent-' + last);
+        var output = document.getElementById('resultOf' + last);
         output.innerHTML = '<b>50%</b>';
         range.addEventListener('input', function() {
           output.innerHTML = '<b>' + range.value + '%</b>';
         }, false);
-      })(lastEmotionInput);
+      })(lastEmotion);
     }).on('tokenfield:createtoken', function (event) {
       var existingTokens = $(this).tokenfield('getTokens');
       $.each(existingTokens, function (index, token) {
@@ -46,15 +46,15 @@ function addOrRemoveEmotionsList(event){
           event.preventDefault();
       });
     }).on('tokenfield:removedtoken', function(e){
-      var lastEmotionInput = document.querySelector('.form-group' + e.attrs.value);
-      lastEmotionInput.parentNode.removeChild(lastEmotionInput);
+      var lastEmotion = document.querySelector('.form-group' + e.attrs.value);
+      lastEmotion.parentNode.removeChild(lastEmotion);
     });
   }
   var xhr = new XMLHttpRequest();
   xhr.addEventListener('load', function(e) {
     if((xhr.status === 200) || (xhr.status === 304)){
-      var list = xhr.responseText;
-      fetchEmotions(list);
+      var catalog = xhr.responseText;
+      fetch(catalog);
       event.preventDefault();
     }
     else {
@@ -101,33 +101,33 @@ function populateForm(event){
 var stressLog = document.getElementById('populate');
 stressLog.addEventListener('click',  function(event) {
   populateForm(event);
-  addOrRemoveEmotionsList(event);
+  newRecord(event);
 }, true);
-function addOrRemoveThoughts(event){
+function editEntry(event){
   if(event.target == document.getElementById('append')) {
-    var thoughtList = document.querySelector('.list-group');
-    var thoughtItem = document.createElement('div');
-    thoughtItem.className = 'list-group-item';
-    thoughtList.appendChild(thoughtItem);
-    var inputGroup = document.createElement('div');
-    inputGroup.className = 'input-group';
-    thoughtItem.appendChild(inputGroup);
+    var list = document.querySelector('.catalog-group');
+    var item = document.createElement('div');
+    item.className = 'catalog-item';
+    list.appendChild(item);
+    var collection = document.createElement('div');
+    collection.className = 'input-group';
+    item.appendChild(collection);
     var thought = document.getElementById('thought');
-    var listItem = document.createElement('p');
-    listItem.textContent = thought.value;
-    inputGroup.appendChild(listItem);
-    var removeItemWrapper = document.createElement('span');
-    removeItemWrapper.className = 'input-group-btn';
-    inputGroup.appendChild(removeItemWrapper);
-    var removeThought = document.createElement('button');
-    removeThought.className = 'btn btn-danger btn-xs';
-    removeThought.setAttribute('id', 'removeThought');
-    removeThought.setAttribute('type', 'button');
-    removeThought.textContent = 'x';
-    removeItemWrapper.appendChild(removeThought);
+    var passage = document.createElement('p');
+    passage.textContent = thought.value;
+    collection.appendChild(passage);
+    var removeWrap = document.createElement('span');
+    removeWrap.className = 'input-group-btn';
+    collection.appendChild(removeWrap);
+    var remove = document.createElement('button');
+    remove.className = 'btn btn-danger btn-xs';
+    remove.setAttribute('id', 'remove');
+    remove.setAttribute('type', 'button');
+    remove.textContent = 'x';
+    removeWrap.appendChild(remove);
     thought.value = '';
   }
-  if(event.target == document.getElementById('removeThought')){
+  if(event.target == document.getElementById('remove')){
     var removeItem = event.target.parentNode.parentNode.parentNode;
     removeItem.parentNode.removeChild(removeItem);
   }
@@ -135,7 +135,7 @@ function addOrRemoveThoughts(event){
 var thoughtForm = document.getElementById('thoughts');
 thoughtForm.addEventListener('click', function(event){
   event.preventDefault();
-  addOrRemoveThoughts(event);
+  editEntry(event);
 }, false);
 function validateData(e) {
   var xhr = new XMLHttpRequest();
@@ -155,23 +155,23 @@ function validateData(e) {
   xhr.setRequestHeader("Content-type","application/json");
   xhr.send(formData());
   function formData() {
-    var userInputs = new Object();
-    userInputs.eventDate = document.getElementById('period').value;
-    userInputs.eventDescription = document.getElementById('description').value;
-    userInputs.emotionsAndRange = {};
-    var userEmotions = document.getElementById('tokenfield').value.split(', ');
-    console.log(userEmotions);
-    for(var emotionIndex = 0; emotionIndex < userEmotions.length; emotionIndex++){
-      var range = document.getElementById('percent-' + userEmotions[emotionIndex]);
-      userInputs.emotionsAndRange[userEmotions[emotionIndex]] = range.value;
+    var entries = new Object();
+    entries.eventDate = document.getElementById('period').value;
+    entries.eventDescription = document.getElementById('description').value;
+    entries.emotionsAndRange = {};
+    var emotions = document.getElementById('tokenfield').value.split(', ');
+    console.log(emotions);
+    for(var item = 0; item < emotions.length; item++){
+      var range = document.getElementById('percent-' + emotions[item]);
+      entries.emotionsAndRange[emotions[item]] = range.value;
     }
-    userInputs.automaticNegativeThoughts = [];
-    var allThoughts = document.querySelectorAll('#thoughts .list-group p');
-    console.log(allThoughts);
-    for(var thoughtIndex = 0; thoughtIndex < allThoughts.length; thoughtIndex++) {
-      userInputs.automaticNegativeThoughts.push(allThoughts[thoughtIndex].innerText);
+    entries.automaticNegativeThoughts = [];
+    var thoughts = document.querySelectorAll('#thoughts .catalog-group p');
+    console.log(thoughts);
+    for(var index = 0; index < thoughts.length; index++) {
+      entries.automaticNegativeThoughts.push(thoughts[index].innerText);
     }
-    return JSON.stringify(userInputs);
+    return JSON.stringify(entries);
   }
   e.preventDefault();
 }

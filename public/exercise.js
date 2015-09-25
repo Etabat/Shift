@@ -1,8 +1,8 @@
 window.onload = function() {
-  console.log($(".tdNegativeThoughts"));
+  console.log($(".thoughts-list"));
 };
-$(".tdNegativeThoughts").click(handler);
-console.log($(".tdNegativeThoughts"));
+$(".thoughts-list").click(handler);
+console.log($(".thoughts-list"));
 function handler(event) {
   var target = $( event.target );
   console.log(target);

@@ -1,55 +1,55 @@
 appendHistory();
 function appendHistory(){
-    function addStressLogSections(stressLogSections){
-          var tableBody = document.createElement('tbody');
-        document.querySelector('.table.table-bordered').appendChild(tableBody);
-        var tableRow = document.createElement('tr');
-        tableBody.appendChild(tableRow);
-        var tdEventDate = document.createElement('td');
-        tableRow.appendChild(tdEventDate);
-        console.log(stressLogSections.eventDate);
+    function appendLog(sections){
+          var display = document.createElement('tbody');
+        document.querySelector('.table.table-bordered').appendChild(display);
+        var row = document.createElement('tr');
+        display.appendChild(row);
+        var dates = document.createElement('td');
+        row.appendChild(dates);
+        console.log(sections.eventDate);
         var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-        var fetchEventDate = new Date(stressLogSections.eventDate);
-        var localeEventDate = fetchEventDate.toLocaleString('en-US', options);
-        console.log(localeEventDate);
-        tdEventDate.innerHTML = '<p>' + localeEventDate + '</p>';
-        var tdEventDescription = document.createElement('td');
-        tdEventDescription.innerHTML = '<p>' + stressLogSections.eventDescription + '</p>';
-        tableRow.appendChild(tdEventDescription);
-        var emotionsAndRange = stressLogSections.emotionsAndRange;
-        var tdEmotionsAndRange = document.createElement('td');
-        tdEmotionsAndRange.className = 'catalog';
-        tableRow.appendChild(tdEmotionsAndRange);
-        var tdNegativeThoughts = document.createElement('td');
-        tdNegativeThoughts.className = 'tdNegativeThoughts';
-        tableRow.appendChild(tdNegativeThoughts);
-        for (var key in emotionsAndRange) {
-            if (emotionsAndRange.hasOwnProperty(key)) {
-                var emotionsParagraph = document.createElement('p');
-                emotionsParagraph.setAttribute('data-emotion', key);
-                emotionsParagraph.setAttribute('data-range', emotionsAndRange[key]);
-                tdEmotionsAndRange.appendChild(emotionsParagraph);
-                emotionsParagraph.textContent = key + ' ' + '(' + emotionsAndRange[key] + '%' + ')';
+        var eventDate = new Date(sections.eventDate);
+        var localeTime = eventDate.toLocaleString('en-US', options);
+        console.log(localeTime);
+        dates.innerHTML = '<p>' + localeTime + '</p>';
+        var descriptions = document.createElement('td');
+        descriptions.innerHTML = '<p>' + sections.eventDescription + '</p>';
+        row.appendChild(descriptions);
+        var ratedEmotions = sections.ratedEmotions;
+        var emotionsList = document.createElement('td');
+        emotionsList.className = 'catalog';
+        row.appendChild(emotionsList);
+        var thoughtsList = document.createElement('td');
+        thoughtsList.className = 'thoughts-list';
+        row.appendChild(thoughtsList);
+        for (var key in ratedEmotions) {
+            if (ratedEmotions.hasOwnProperty(key)) {
+                var passage = document.createElement('p');
+                passage.setAttribute('data-emotion', key);
+                passage.setAttribute('data-range', ratedEmotions[key]);
+                emotionsList.appendChild(passage);
+                passage.textContent = key + ' ' + '(' + ratedEmotions[key] + '%' + ')';
             }
         }
-        var negativeThoughts = stressLogSections.automaticNegativeThoughts;
+        var negativeThoughts = sections.automaticNegativeThoughts;
         for (var thoughts in negativeThoughts) {
             if (negativeThoughts.hasOwnProperty(thoughts)) {
-                var thoughtsParagraph = document.createElement('p');
-                thoughtsParagraph.className = 'negativeThoughts';
-                thoughtsParagraph.setAttribute('data-toggle', 'modal');
-                thoughtsParagraph.setAttribute('data-target', '#affirm');
-                tdNegativeThoughts.appendChild(thoughtsParagraph);
-                thoughtsParagraph.textContent = negativeThoughts[thoughts];
+                var passageTwo = document.createElement('p');
+                passageTwo.className = 'thoughts';
+                passageTwo.setAttribute('data-toggle', 'modal');
+                passageTwo.setAttribute('data-target', '#affirm');
+                thoughtsList.appendChild(passageTwo);
+                passageTwo.textContent = negativeThoughts[thoughts];
             }
         }
-        var tdEmotionsAndRangeTwo = document.createElement('td');
-        tableRow.appendChild(tdEmotionsAndRangeTwo);
-        for (var property in emotionsAndRange) {
-            if (emotionsAndRange.hasOwnProperty(key)) {
-                var emotionsParagraphTwo = document.createElement('p');
-                tdEmotionsAndRangeTwo.appendChild(emotionsParagraphTwo);
-                emotionsParagraphTwo.textContent = property + ' ( __%)';
+        var emotionsListTwo = document.createElement('td');
+        row.appendChild(emotionsListTwo);
+        for (var property in ratedEmotions) {
+            if (ratedEmotions.hasOwnProperty(key)) {
+                var passageTwo = document.createElement('p');
+                emotionsListTwo.appendChild(passageTwo);
+                passageTwo.textContent = property + ' ( __%)';
             }
         }
     }
@@ -58,8 +58,8 @@ function appendHistory(){
         if((xhr.status === 200) || (xhr.status === 304)) {
             var response = xhr.responseText;
             var stressLog = JSON.parse(response);
-            stressLog.forEach(function(stressLogSection){
-                addStressLogSections(stressLogSection);
+            stressLog.forEach(function(logSection){
+                appendLog(logSection);
             });
         }
         else {
