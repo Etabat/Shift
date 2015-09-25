@@ -107,6 +107,7 @@ function editEntry(event){
   if(event.target == document.getElementById('append')) {
     var list = document.querySelector('.catalog-group');
     var item = document.createElement('div');
+    console.log(item);
     item.className = 'catalog-item';
     list.appendChild(item);
     var collection = document.createElement('div');

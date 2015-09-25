@@ -16,7 +16,7 @@ function appendHistory(){
         var descriptions = document.createElement('td');
         descriptions.innerHTML = '<p>' + sections.eventDescription + '</p>';
         row.appendChild(descriptions);
-        var ratedEmotions = sections.ratedEmotions;
+        var ratedEmotions = sections.emotionsAndRange;
         var emotionsList = document.createElement('td');
         emotionsList.className = 'catalog';
         row.appendChild(emotionsList);
