@@ -18,14 +18,12 @@ function handler(event) {
     var emotions = event.target.parentNode.previousSibling.previousSibling.childNodes;
     console.log(emotions);
     console.log(emotions.length);
-    //console.log(eventtargetTd.childNodes.length);
     function setAttributes(element, attrs) {
       for(var key in attrs) {
         element.setAttribute(key, attrs[key]);
       }
     }
     for (var nodes = 0; nodes < emotions.length; nodes++) {
-      // console.log(emotions[nodes].getAttributeNode('data-emotion'));
       if(emotions[nodes].nodeName == 'P'){
         var emotion = emotions[nodes].dataset.emotion;
         var scale = emotions[nodes].dataset.range;

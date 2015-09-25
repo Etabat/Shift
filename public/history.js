@@ -1,7 +1,7 @@
 appendHistory();
 function appendHistory(){
     function appendLog(sections){
-          var display = document.createElement('tbody');
+        var display = document.createElement('tbody');
         document.querySelector('.table.table-bordered').appendChild(display);
         var row = document.createElement('tr');
         display.appendChild(row);

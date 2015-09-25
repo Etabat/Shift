@@ -34,7 +34,6 @@ router.post('/answers/:id', jsonParser, function (req, res) {
   });
   var random = Math.floor((Math.random() * 1000) + 1);
   var dateNow = Date.now();
-  //var dateScan = new Date().toDateString();
   var PATH_NAME = __dirname;
   fs.writeFile(PATH_NAME + '/' + id + '/' + dateNow + ':' + random + '.json', JSON.stringify(req.body), function (error) {
     if (error) {

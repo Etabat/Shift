@@ -150,7 +150,6 @@ function validateData(e) {
   xhr.addEventListener("error", function() {
     alert('Something went wrong.');
   });
-  //xhr.open('GET', './secureFormData/answers:777', true);
   xhr.open('POST','/secureFormData/answers/5000', true);
   xhr.setRequestHeader("Content-type","application/json");
   xhr.send(formData());
