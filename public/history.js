@@ -90,6 +90,11 @@ function loadChallenge() {
       }
       console.log(target['p']);
       console.log(emotions);
+      //$('#affirm').on('hide.bs.modal', function(){
+      //  var evidence = document.getElementById('evidence').value;
+      //  console.log(evidence);
+      //  submitChallenge(evidence);
+      //});
       $('#reassess').on('show.bs.modal', function(){
         var reassess = document.querySelector('#reassess form');
         while (reassess.lastChild) {
@@ -142,9 +147,42 @@ function loadChallenge() {
           }
         }
       }).on('hide.bs.modal', function(){
-        console.log('hihi');
-        var reassess = document.querySelector('#reassess form');
+
       })
     }
   }
+}
+var clear = document.getElementById('cancel');
+clear.addEventListener('click', function () {
+  clearForm();
+});
+var submit = document.getElementById('validate');
+submit.addEventListener('click', function(event){
+  event.preventDefault();
+  validateData(event);
+  clearForm(event)
+  });
+function validateData(event) {
+    var entries = {};
+    entries.submissionDate = Date.now();
+    entries.hotThought = event.target.parentNode.parentNode.childNodes[1].childNodes[5].innerText;
+    entries.evidence = document.getElementById('evidence').value;
+    entries.evidenceAgainst = document.getElementById('evidence-against').value;
+    entries.alternative = document.getElementById('alternative').value;
+    var reassess = document.querySelector('#reassess form').childNodes;
+    entries.emotionsAndRange = {};
+    for (var index = 0; index < reassess.length; index++) {
+      var emotion = reassess[index].childNodes[0].innerText;
+      var range = reassess[index].childNodes[2].value;
+      entries.emotionsAndRange[emotion] = range;
+      console.log(emotion);
+      console.log(range)
+    }
+    console.log(entries);
+    return JSON.stringify(entries);
+  }
+function clearForm(){
+  document.getElementById('evidence').value = "";
+  document.getElementById('evidence-against').value = "";
+  document.getElementById('alternative').value = "";
 }

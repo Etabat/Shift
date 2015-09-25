@@ -2,15 +2,14 @@ window.onload = function() {
   console.log($(".thoughts-list"));
 };
 $(".thoughts-list").click(handler);
-console.log($(".thoughts-list"));
 function handler(event) {
   var target = $( event.target );
   console.log(target);
   if ( target.is( "p" ) ) {
     console.log(target);
-    var hotThoughts = document.querySelectorAll('.hot-Thought');
+    var hotThoughts = document.querySelectorAll('.hot-thought');
     for(var thought = 0; thought < hotThoughts.length; thought++) {
-      hotThoughts[thought].innerHTML = 'Selected Hot Thought: ' + event.target.innerText;
+      hotThoughts[thought].textContent = 'Selected hot-thought: ' + event.target.innerText;
     }
     var reassess = document.querySelector('#reassess form');
     console.log(event.target);
@@ -66,3 +65,5 @@ function handler(event) {
     console.log(event.target.innerText);
   }
 }
+var list = document.getElementsByClassName('thoughts-list');
+console.log(list);

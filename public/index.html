@@ -186,16 +186,12 @@
                   <h3>Step 1: Evidence that supports the thought</h3>
                   <p>What facts support the truthfulness of this thought or image?</p>
                   <form>
-                    <div class="input-group">
-                      <span class="input-group-btn">
-                        <button class="btn btn-info" id="add" type="button">+</button>
-                      </span>
-                      <input class="form-control" id="evidence" type="text" placeholder="Enter thoughts here..." required>
-                    </div>
+                    <label for="evidence"></label>
+                    <textarea class="form-control" id="evidence" rows="3" placeholder="Begin writing here..."></textarea>
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button class="btn btn-warning" data-dismiss="modal" type="button">Cancel</button>
+                  <button class="btn btn-warning" id="cancel" data-dismiss="modal" type="button">Cancel</button>
                   <button class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#challenge" type="submit">Next</button>
                 </div>
               </div>
@@ -269,7 +265,7 @@
                 <div class="modal-footer">
                   <button class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#rethink" type="button">Back</button>
                   <button class="btn btn-warning" data-dismiss="modal" type="button">Cancel</button>
-                  <button class="btn btn-primary" id="validate" data-dismiss="modal" type="submit">Save changes</button>
+                  <button class="btn btn-primary" id="validate" data-dismiss="modal" type="submit">Submit</button>
                 </div>
               </div>
             </div>
