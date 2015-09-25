@@ -35,21 +35,21 @@ function appendHistory(){
         var negativeThoughts = sections.automaticNegativeThoughts;
         for (var thoughts in negativeThoughts) {
             if (negativeThoughts.hasOwnProperty(thoughts)) {
-                var passageTwo = document.createElement('p');
-                passageTwo.className = 'thoughts';
-                passageTwo.setAttribute('data-toggle', 'modal');
-                passageTwo.setAttribute('data-target', '#affirm');
-                thoughtsList.appendChild(passageTwo);
-                passageTwo.textContent = negativeThoughts[thoughts];
+                var newThought = document.createElement('p');
+                newThought.className = 'thoughts';
+                newThought.setAttribute('data-toggle', 'modal');
+                newThought.setAttribute('data-target', '#affirm');
+                thoughtsList.appendChild(newThought);
+                newThought.textContent = negativeThoughts[thoughts];
             }
         }
-        var emotionsListTwo = document.createElement('td');
-        row.appendChild(emotionsListTwo);
+        var ratedList = document.createElement('td');
+        row.appendChild(ratedList);
         for (var property in ratedEmotions) {
-            if (ratedEmotions.hasOwnProperty(key)) {
-                var passageTwo = document.createElement('p');
-                emotionsListTwo.appendChild(passageTwo);
-                passageTwo.textContent = property + ' ( __%)';
+            if (ratedEmotions.hasOwnProperty(property)) {
+                var passageThree = document.createElement('p');
+                ratedList.appendChild(passageThree);
+              passageThree.textContent = property + ' ( __%)';
             }
         }
     }
@@ -62,6 +62,11 @@ function appendHistory(){
                 appendLog(logSection);
             });
         }
+        if (xhr.readyState == 4 && xhr.status == 200){
+          var list = document.getElementsByClassName('thoughts-list');
+          console.log(list);
+          loadChallenge();
+        }
         else {
             alert(e.target.responseText);
         }
@@ -71,4 +76,75 @@ function appendHistory(){
     });
     xhr.open('GET', './secureFormData/answers/5000', true);
     xhr.send();
+}
+function loadChallenge() {
+  $(".thoughts-list").click(handler);
+  function handler(event) {
+    var target = $(event.target);
+    var emotions = event.target.parentNode.previousSibling.childNodes;
+    console.log(target);
+    if (target.is("p")) {
+      var hotThoughts = document.querySelectorAll('.hot-thought');
+      for (var thought = 0; thought < hotThoughts.length; thought++) {
+        hotThoughts[thought].textContent = 'Selected hot-thought: ' + event.target.innerText;
+      }
+      console.log(target['p']);
+      console.log(emotions);
+      $('#reassess').on('show.bs.modal', function(){
+        var reassess = document.querySelector('#reassess form');
+        while (reassess.lastChild) {
+          reassess.removeChild(reassess.lastChild);
+        }
+        console.log(emotions.length);
+        function setAttributes(element, attrs) {
+          for (var key in attrs) {
+            element.setAttribute(key, attrs[key]);
+          }
+        }
+        for (var nodes = 0; nodes < emotions.length; nodes++) {
+          if (emotions[nodes].nodeName == 'P') {
+            var emotion = emotions[nodes].dataset.emotion;
+            var scale = emotions[nodes].dataset.range;
+            console.log(emotion);
+            console.log(scale);
+            if (emotions[nodes].dataset.emotion != undefined) {
+              var collection = document.createElement('div');
+              collection.className = 'form-group' + emotion;
+              reassess.appendChild(collection);
+              var label = document.createElement('label');
+              setAttributes(label, {"for": "percent-" + emotion, "class": "range"});
+              label.textContent = emotion;
+              collection.appendChild(label);
+              var addRange = document.createElement('input');
+              setAttributes(addRange, {
+                "id": "percent-" + emotion,
+                "type": "range",
+                "name": "range",
+                "min": "0",
+                "max": "100",
+                "value": "50",
+                "step": "5"
+              });
+              collection.appendChild(addRange);
+              var intensity = document.createElement('output');
+              setAttributes(intensity, {"id": "resultOf" + emotion});
+              collection.appendChild(intensity);
+              (function (emotion) {
+                var range = document.getElementById('percent-' + emotion);
+                var output = document.getElementById('resultOf' + emotion);
+                range.value = scale;
+                output.innerHTML = '<b>' + range.value + '%</b>';
+                range.addEventListener('input', function () {
+                  output.innerHTML = '<b>' + range.value + '%</b>';
+                }, false);
+              })(emotion);
+            }
+          }
+        }
+      }).on('hide.bs.modal', function(){
+        console.log('hihi');
+        var reassess = document.querySelector('#reassess form');
+      })
+    }
+  }
 }

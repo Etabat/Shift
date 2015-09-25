@@ -179,3 +179,5 @@ var button = document.getElementById('submit');
 button.addEventListener('click', function(e) {
   validateData(e)
 }, true);
+var list = document.getElementsByClassName('thoughts-list');
+console.log(list);
