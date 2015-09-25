@@ -1,5 +1,5 @@
-loadStressLogHistory();
-function loadStressLogHistory(){
+appendHistory();
+function appendHistory(){
     function addStressLogSections(stressLogSections){
           var tableBody = document.createElement('tbody');
         document.querySelector('.table.table-bordered').appendChild(tableBody);
@@ -18,7 +18,7 @@ function loadStressLogHistory(){
         tableRow.appendChild(tdEventDescription);
         var emotionsAndRange = stressLogSections.emotionsAndRange;
         var tdEmotionsAndRange = document.createElement('td');
-        tdEmotionsAndRange.className = 'loggedEmotions';
+        tdEmotionsAndRange.className = 'catalog';
         tableRow.appendChild(tdEmotionsAndRange);
         var tdNegativeThoughts = document.createElement('td');
         tdNegativeThoughts.className = 'tdNegativeThoughts';
@@ -38,7 +38,7 @@ function loadStressLogHistory(){
                 var thoughtsParagraph = document.createElement('p');
                 thoughtsParagraph.className = 'negativeThoughts';
                 thoughtsParagraph.setAttribute('data-toggle', 'modal');
-                thoughtsParagraph.setAttribute('data-target', '#thoughtChallengeEvidenceFor');
+                thoughtsParagraph.setAttribute('data-target', '#affirm');
                 tdNegativeThoughts.appendChild(thoughtsParagraph);
                 thoughtsParagraph.textContent = negativeThoughts[thoughts];
             }

@@ -20,19 +20,19 @@ function addOrRemoveEmotionsList(event){
       }
       var formGroup = document.createElement('div');
       formGroup.className = 'form-group' + lastEmotionInput;
-      document.getElementById('sectionTwo').appendChild(formGroup);
+      document.getElementById('emotions').appendChild(formGroup);
       var newLabel = document.createElement('label');
-      setAttributes(newLabel, {"for": "percentageOf" + lastEmotionInput, "class": "range"});
+      setAttributes(newLabel, {"for": "percent-" + lastEmotionInput, "class": "range"});
       newLabel.textContent = lastEmotionInput;
       formGroup.appendChild(newLabel);
       var newInput = document.createElement('input');
-      setAttributes(newInput, {"id": "percentageOf" + lastEmotionInput, "type": "range", "name": "range", "min": "0", "max": "100", "value": "50", "step": "5"});
+      setAttributes(newInput, {"id": "percent-" + lastEmotionInput, "type": "range", "name": "range", "min": "0", "max": "100", "value": "50", "step": "5"});
       formGroup.appendChild(newInput);
       var newOutput = document.createElement('output');
       setAttributes(newOutput, {"id": "resultOf" + lastEmotionInput});
       formGroup.appendChild(newOutput);
       (function(emotion){
-        var range = document.getElementById('percentageOf' + emotion);
+        var range = document.getElementById('percent-' + emotion);
         var output = document.getElementById('resultOf' + lastEmotionInput);
         output.innerHTML = '<b>50%</b>';
         range.addEventListener('input', function() {
@@ -69,24 +69,24 @@ function addOrRemoveEmotionsList(event){
 }
 function populateForm(event){
   event.preventDefault();
-  function addWorksheets(sectionOne) {
+  function addWorksheets(setting) {
     var subtitles = document.querySelectorAll('form h3');
-    subtitles[0].textContent = sectionOne.subtitle;
-    subtitles[1].textContent = sectionOne.subtitle2;
-    subtitles[2].textContent = sectionOne.subtitle3;
-    subtitles[3].textContent = sectionOne.subtitle4;
+    subtitles[0].textContent = setting.subtitle;
+    subtitles[1].textContent = setting.subtitle2;
+    subtitles[2].textContent = setting.subtitle3;
+    subtitles[3].textContent = setting.subtitle4;
     var descriptions = document.querySelectorAll('form p');
-    descriptions[0].textContent = sectionOne.description;
-    descriptions[1].textContent = sectionOne.description2;
-    descriptions[2].textContent = sectionOne.description3;
+    descriptions[0].textContent = setting.description;
+    descriptions[1].textContent = setting.description2;
+    descriptions[2].textContent = setting.description3;
   }
   var xhr = new XMLHttpRequest();
   xhr.addEventListener('load', function(e) {
     if((xhr.status === 200) || (xhr.status === 304)){
       var response = xhr.responseText;
       var sections = JSON.parse(response);
-      var sectionOne = sections.stressLog;
-      addWorksheets(sectionOne);
+      var setting = sections.stressLog;
+      addWorksheets(setting);
     }
     else {
       alert(e.target.responseText);
@@ -98,13 +98,13 @@ function populateForm(event){
   xhr.open('GET', './worksheets.json', true);
   xhr.send();
 }
-var toggleStressLog = document.getElementById('toggleStressLog');
-toggleStressLog.addEventListener('click',  function(event) {
+var stressLog = document.getElementById('populate');
+stressLog.addEventListener('click',  function(event) {
   populateForm(event);
   addOrRemoveEmotionsList(event);
 }, true);
 function addOrRemoveThoughts(event){
-  if(event.target == document.getElementById('addThought')) {
+  if(event.target == document.getElementById('append')) {
     var thoughtList = document.querySelector('.list-group');
     var thoughtItem = document.createElement('div');
     thoughtItem.className = 'list-group-item';
@@ -112,9 +112,9 @@ function addOrRemoveThoughts(event){
     var inputGroup = document.createElement('div');
     inputGroup.className = 'input-group';
     thoughtItem.appendChild(inputGroup);
-    var thoughtInput = document.getElementById('thoughtInput');
+    var thought = document.getElementById('thought');
     var listItem = document.createElement('p');
-    listItem.textContent = thoughtInput.value;
+    listItem.textContent = thought.value;
     inputGroup.appendChild(listItem);
     var removeItemWrapper = document.createElement('span');
     removeItemWrapper.className = 'input-group-btn';
@@ -125,14 +125,14 @@ function addOrRemoveThoughts(event){
     removeThought.setAttribute('type', 'button');
     removeThought.textContent = 'x';
     removeItemWrapper.appendChild(removeThought);
-    thoughtInput.value = '';
+    thought.value = '';
   }
   if(event.target == document.getElementById('removeThought')){
     var removeItem = event.target.parentNode.parentNode.parentNode;
     removeItem.parentNode.removeChild(removeItem);
   }
 }
-var thoughtForm = document.getElementById('sectionThree');
+var thoughtForm = document.getElementById('thoughts');
 thoughtForm.addEventListener('click', function(event){
   event.preventDefault();
   addOrRemoveThoughts(event);
@@ -156,17 +156,17 @@ function validateData(e) {
   xhr.send(formData());
   function formData() {
     var userInputs = new Object();
-    userInputs.eventDate = document.getElementById('eventDate').value;
-    userInputs.eventDescription = document.getElementById('eventDescription').value;
+    userInputs.eventDate = document.getElementById('period').value;
+    userInputs.eventDescription = document.getElementById('description').value;
     userInputs.emotionsAndRange = {};
     var userEmotions = document.getElementById('tokenfield').value.split(', ');
     console.log(userEmotions);
     for(var emotionIndex = 0; emotionIndex < userEmotions.length; emotionIndex++){
-      var range = document.getElementById('percentageOf' + userEmotions[emotionIndex]);
+      var range = document.getElementById('percent-' + userEmotions[emotionIndex]);
       userInputs.emotionsAndRange[userEmotions[emotionIndex]] = range.value;
     }
     userInputs.automaticNegativeThoughts = [];
-    var allThoughts = document.querySelectorAll('#sectionThree .list-group p');
+    var allThoughts = document.querySelectorAll('#thoughts .list-group p');
     console.log(allThoughts);
     for(var thoughtIndex = 0; thoughtIndex < allThoughts.length; thoughtIndex++) {
       userInputs.automaticNegativeThoughts.push(allThoughts[thoughtIndex].innerText);
