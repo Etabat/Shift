@@ -74,7 +74,7 @@ function appendHistory(){
     xhr.addEventListener("error", function() {
         alert('Something goes wrong.');
     });
-    xhr.open('GET', './secureFormData/answers/5000', true);
+    xhr.open('GET', './secureFormData/answers/5000/stress-logs', true);
     xhr.send();
 }
 function loadChallenge() {
@@ -158,11 +158,28 @@ clear.addEventListener('click', function () {
 });
 var submit = document.getElementById('validate');
 submit.addEventListener('click', function(event){
+  console.log(submit);
   event.preventDefault();
-  validateData(event);
+  validateChallenge(event);
   clearForm(event)
+});
+function validateChallenge(event) {
+  var xhr = new XMLHttpRequest();
+  xhr.addEventListener('load', function(e) {
+    if((xhr.status === 200) || (xhr.status === 304)){
+      alert('Yeah! Data sent and response loaded.');
+    }
+    else {
+      alert(e.target.responseText);
+    }
   });
-function validateData(event) {
+  xhr.addEventListener("error", function() {
+    alert('Something went wrong.');
+  });
+  xhr.open('POST','/secureFormData/answers/5000/challenges', true);
+  xhr.setRequestHeader("Content-type","application/json");
+  xhr.send(formData());
+  function formData() {
     var entries = {};
     entries.submissionDate = Date.now();
     entries.hotThought = event.target.parentNode.parentNode.childNodes[1].childNodes[5].innerText;
@@ -181,6 +198,7 @@ function validateData(event) {
     console.log(entries);
     return JSON.stringify(entries);
   }
+}
 function clearForm(){
   document.getElementById('evidence').value = "";
   document.getElementById('evidence-against').value = "";
