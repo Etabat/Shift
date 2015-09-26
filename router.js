@@ -24,8 +24,6 @@ router.get('/answers/:id/:submission', function(req, res) {
     }
   });
 });
-// so you can set two parameters and it doesn't matter which xhr request is sent,
-// you can create an argument and store things based off their storage
 router.post('/answers/:id/:submission', jsonParser, function (req, res) {
   console.log('hello world');
   var id = req.params.id;
@@ -59,15 +57,3 @@ router.get('/', function(req, res){
   res.send("GOT IT");
 });
 module.exports = router;
-//// piping the data
-//var readable = getReadableStreamSomehow();
-//readable.on('data', function(chunk) {
-//    console.log('got %d bytes of data', chunk.length);
-//});
-//readable.on('end', function() {
-//    console.log('there will be no more data.');
-//});
-
-// watch stream and see any changes
-// get the file changes and send the captured file path to redirect
-// check out https://www.npmjs.com/package/send

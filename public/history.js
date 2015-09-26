@@ -7,11 +7,9 @@ function appendHistory(){
         display.appendChild(row);
         var dates = document.createElement('td');
         row.appendChild(dates);
-        console.log(sections.eventDate);
         var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
         var eventDate = new Date(sections.eventDate);
         var localeTime = eventDate.toLocaleString('en-US', options);
-        console.log(localeTime);
         dates.innerHTML = '<p>' + localeTime + '</p>';
         var descriptions = document.createElement('td');
         descriptions.innerHTML = '<p>' + sections.eventDescription + '</p>';
@@ -64,7 +62,6 @@ function appendHistory(){
         }
         if (xhr.readyState == 4 && xhr.status == 200){
           var list = document.getElementsByClassName('thoughts-list');
-          console.log(list);
           loadChallenge();
         }
         else {
@@ -82,25 +79,16 @@ function loadChallenge() {
   function handler(event) {
     var target = $(event.target);
     var emotions = event.target.parentNode.previousSibling.childNodes;
-    console.log(target);
     if (target.is("p")) {
       var hotThoughts = document.querySelectorAll('.hot-thought');
       for (var thought = 0; thought < hotThoughts.length; thought++) {
         hotThoughts[thought].textContent = 'Selected hot-thought: ' + event.target.innerText;
       }
-      console.log(target['p']);
-      console.log(emotions);
-      //$('#affirm').on('hide.bs.modal', function(){
-      //  var evidence = document.getElementById('evidence').value;
-      //  console.log(evidence);
-      //  submitChallenge(evidence);
-      //});
       $('#reassess').on('show.bs.modal', function(){
         var reassess = document.querySelector('#reassess form');
         while (reassess.lastChild) {
           reassess.removeChild(reassess.lastChild);
         }
-        console.log(emotions.length);
         function setAttributes(element, attrs) {
           for (var key in attrs) {
             element.setAttribute(key, attrs[key]);
@@ -110,8 +98,6 @@ function loadChallenge() {
           if (emotions[nodes].nodeName == 'P') {
             var emotion = emotions[nodes].dataset.emotion;
             var scale = emotions[nodes].dataset.range;
-            console.log(emotion);
-            console.log(scale);
             if (emotions[nodes].dataset.emotion != undefined) {
               var collection = document.createElement('div');
               collection.className = 'form-group' + emotion;
@@ -158,7 +144,6 @@ clear.addEventListener('click', function () {
 });
 var submit = document.getElementById('validate');
 submit.addEventListener('click', function(event){
-  console.log(submit);
   event.preventDefault();
   validateChallenge(event);
   clearForm(event)
@@ -192,10 +177,7 @@ function validateChallenge(event) {
       var emotion = reassess[index].childNodes[0].innerText;
       var range = reassess[index].childNodes[2].value;
       entries.emotionsAndRange[emotion] = range;
-      console.log(emotion);
-      console.log(range)
     }
-    console.log(entries);
     return JSON.stringify(entries);
   }
 }

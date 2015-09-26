@@ -107,7 +107,6 @@ function editEntry(event){
   if(event.target == document.getElementById('append')) {
     var list = document.querySelector('.catalog-group');
     var item = document.createElement('div');
-    console.log(item);
     item.className = 'catalog-item';
     list.appendChild(item);
     var collection = document.createElement('div');
@@ -160,14 +159,12 @@ function validateData(e) {
     entries.eventDescription = document.getElementById('description').value;
     entries.emotionsAndRange = {};
     var emotions = document.getElementById('tokenfield').value.split(', ');
-    console.log(emotions);
     for(var item = 0; item < emotions.length; item++){
       var range = document.getElementById('percent-' + emotions[item]);
       entries.emotionsAndRange[emotions[item]] = range.value;
     }
     entries.automaticNegativeThoughts = [];
     var thoughts = document.querySelectorAll('#thoughts .catalog-group p');
-    console.log(thoughts);
     for(var index = 0; index < thoughts.length; index++) {
       entries.automaticNegativeThoughts.push(thoughts[index].innerText);
     }
@@ -180,4 +177,3 @@ button.addEventListener('click', function(e) {
   validateData(e)
 }, true);
 var list = document.getElementsByClassName('thoughts-list');
-console.log(list);
