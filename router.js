@@ -54,12 +54,11 @@ router.post('/answers/:id/:submission', jsonParser, function (req, res) {
   watcher
       .on('change', function(path) {
         console.log('File', path, 'has been added');
-        var answer = fs.readFileSync(path,  "utf-8");
-        console.log(answer);
-        var configJSON = JSON.parse(answer);
-        configJSON["logEntry"] = path;
-        var mew = JSON.stringify(configJSON);
-        fs.writeFileSync(path, mew);
+        var stressLog = fs.readFileSync(path,  "utf-8");
+        var entryJSON = JSON.parse(stressLog);
+        entryJSON["logEntry"] = path;
+        var entry = JSON.stringify(entryJSON);
+        fs.writeFileSync(path, entry);
         fs.stat(path, function (err, stat) {
           if (err) throw err;
           console.log('This is the "stat" from watcher:' + stat);
