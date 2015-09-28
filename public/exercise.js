@@ -1,11 +1,8 @@
 var xhr = new XMLHttpRequest();
 xhr.addEventListener('load', function(e) {
   if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)){
-    console.log('hihih');
     var response = xhr.responseText;
-    console.log(response);
     var stressLog = JSON.parse(response);
-    console.log(stressLog);
     stressLog.forEach(function(entry){
       getLog(entry);
     });
@@ -92,8 +89,6 @@ submit.addEventListener('click', function(event){
 });
 var logArray = [];
 function getLog(entry){
-  console.log(entry);
-  console.log(entry.eventDate);
   logArray.push(entry.logEntry);
 }
 function validateChallenge(event) {
