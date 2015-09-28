@@ -42,7 +42,7 @@ router.post('/answers/:id/:submission', jsonParser, function (req, res) {
   fs.stat(DIR_PATH, function (err, stats) {
     if (err) {
       console.log('fs stat error: ' + err);
-      fs.mkdirSync('./' + id + '/' + submission);
+      fs.mkdirSync(DIR_PATH);
     }
     console.log('fs stat user directory -> submission checked successfully. Here are the "stats": ' + stats);
   });
