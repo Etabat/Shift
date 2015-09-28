@@ -7,13 +7,12 @@
     <title>Shift</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="bootstrap-tokenfield.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.min.css">
     <link rel="stylesheet" href="main.css">
   </head>
   <body>
     <nav class="navbar navbar-default">
       <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" type="button">
             <span class="sr-only">Toggle navigation</span>
@@ -22,7 +21,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#">SHIFT - challenge your mind</a>
-        </div>
+        </div> <!-- navbar header -->
         <div class="collapse navbar-collapse" id="navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Inbox <span class="badge">42</span></a></li>
@@ -37,9 +36,9 @@
               </ul>
             </li>
           </ul>
-        </div>
-      </div>
-    </nav>
+        </div> <!-- navbar collapse -->
+      </div> <!-- container-fluid -->
+    </nav> <!-- navbar navbar-default -->
   <div class="container-fluid">
     <button class="btn btn-primary" id="populate" data-toggle="collapse" data-target="#collapse-log" type="button"  aria-expanded="false" aria-controls="collapse-log">
       Show/Hide
@@ -108,8 +107,8 @@
               <button class="btn btn-primary" id="submit" type="submit">Submit</button>
             </form>
           </div>
-        </div>
-      </div>
+        </div> <!-- col -->
+      </div> <!-- row -->
         <div class="container-fluid">
           <div class="well well-lg" id="history">
             <div class="table-responsive">
@@ -173,7 +172,7 @@
                 </tbody>
               </table>
             </div>
-          </div>
+          </div> <!-- well well-lg -->
           <div class="modal" id="affirm" tabindex="-1" aria-labelledby="affirm" aria-hidden="true" role="dialog">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -196,7 +195,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> <!-- modal affirm -->
           <div class="modal" id="challenge" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -223,7 +222,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> <!-- modal challenge -->
           <div class="modal" id="rethink" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -247,7 +246,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> <!-- modal rethink -->
           <div class="modal" id="reassess" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -269,17 +268,17 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </div> <!-- modal reassess -->
+        </div> <!-- secondary container-fluid -->
+      </div> <!-- collapse -->
+    </div> <!-- main container-fluid -->
   <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
   <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-  <script src="bootstrap-tokenfield.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="shift.js"></script>
-  <script src="history.js"></script>
-  <script src="exercise.js"></script>
+    <script src="history.js"></script>
+    <script src="exercise.js"></script>
   </body>
 </html>
 

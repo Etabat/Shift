@@ -58,7 +58,7 @@ function newRecord(event){
       event.preventDefault();
     }
     else {
-      alert(e.target.responseText);
+      alert(e.target.responseText + 'shift xhr didnt load 1');
     }
   });
   xhr.addEventListener("error", function() {
@@ -89,7 +89,7 @@ function populateForm(event){
       addWorksheets(setting);
     }
     else {
-      alert(e.target.responseText);
+      alert(e.target.responseText + 'xhr didnt load shift 2');
     }
   });
   xhr.addEventListener("error", function() {
@@ -144,7 +144,7 @@ function validateData(e) {
       alert('Yeah! Data sent and response loaded.');
     }
     else {
-      alert(e.target.responseText);
+      alert(e.target.responseText + 'xhr didnt load shift 3');
     }
   });
   xhr.addEventListener("error", function() {

@@ -3,14 +3,15 @@ xhr.addEventListener('load', function(e) {
   if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)){
     var response = xhr.responseText;
     var stressLog = JSON.parse(response);
+    console.log(stressLog);
     stressLog.forEach(function(entry){
       getLog(entry);
+      console.log(entry['logEntry'])
     });
-    alert('Yeah! Data sent and response loaded.');
     loadChallenge();
   }
   else {
-    alert(e.target.responseText);
+    alert(e.target.responseText + 'response alert for failing to load xhr: 1');
   }
 });
 xhr.open('GET', './secureFormData/answers/5000/stress-logs', true);
@@ -98,7 +99,7 @@ function validateChallenge(event) {
       alert('Yeah! Data sent and response loaded.');
     }
     else {
-      alert(e.target.responseText);
+      alert(e.target.responseText + 'response alert for failing to load xhr: 2');
     }
   });
   xhr.addEventListener("error", function() {

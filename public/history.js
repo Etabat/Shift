@@ -52,17 +52,12 @@ function appendLog(sections){
 }
 var xhr = new XMLHttpRequest();
 xhr.addEventListener('load', function(e) {
-    if((xhr.status === 200) || (xhr.status === 304)) {
-        var response = xhr.responseText;
+        var response = e.target.responseText;
         console.log(response);
         var stressLog = JSON.parse(response);
         stressLog.forEach(function(section){
             appendLog(section);
-        });
-    }
-    else {
-        alert(e.target.responseText);
-    }
+    });
 });
 xhr.addEventListener("error", function() {
     alert('Something went wrong. Something did not load properly. Check router and server configurations');
