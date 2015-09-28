@@ -1,6 +1,7 @@
 appendHistory();
 function appendHistory(){
     function appendLog(sections){
+        console.log(sections.logEntry);
         var display = document.createElement('tbody');
         document.querySelector('.table.table-bordered').appendChild(display);
         var row = document.createElement('tr');
@@ -55,9 +56,10 @@ function appendHistory(){
     xhr.addEventListener('load', function(e) {
         if((xhr.status === 200) || (xhr.status === 304)) {
             var response = xhr.responseText;
+            console.log(response);
             var stressLog = JSON.parse(response);
-            stressLog.forEach(function(logSection){
-                appendLog(logSection);
+            stressLog.forEach(function(section){
+                appendLog(section);
             });
         }
         else {

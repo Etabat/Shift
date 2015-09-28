@@ -1,16 +1,22 @@
 var xhr = new XMLHttpRequest();
 xhr.addEventListener('load', function(e) {
-  if (xhr.readyState == 4 && xhr.status == 200){
+  if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)){
+    console.log('hihih');
+    var response = xhr.responseText;
+    console.log(response);
+    var stressLog = JSON.parse(response);
+    console.log(stressLog);
+    stressLog.forEach(function(entry){
+      getLog(entry);
+    });
+    alert('Yeah! Data sent and response loaded.');
     loadChallenge();
   }
   else {
     alert(e.target.responseText);
   }
 });
-xhr.addEventListener("error", function() {
-  alert('Something goes wrong.');
-});
-xhr.open('GET', './secureFormData/answers/5000', true);
+xhr.open('GET', './secureFormData/answers/5000/stress-logs', true);
 xhr.send();
 function loadChallenge() {
   $(".thoughts-list").click(handler);
@@ -18,7 +24,7 @@ function loadChallenge() {
     var target = $(event.target);
     var emotions = event.target.parentNode.previousSibling.childNodes;
     if (target.is("p")) {
-      var hotThoughts = document.querySelectorAll('.hot-thought');
+        var hotThoughts = document.querySelectorAll('.hot-thought');
       for (var thought = 0; thought < hotThoughts.length; thought++) {
         hotThoughts[thought].textContent = 'Selected hot-thought: ' + event.target.innerText;
       }
@@ -84,10 +90,16 @@ submit.addEventListener('click', function(event){
   validateChallenge(event);
   clearForm(event)
 });
+var logArray = [];
+function getLog(entry){
+  console.log(entry);
+  console.log(entry.eventDate);
+  logArray.push(entry.logEntry);
+}
 function validateChallenge(event) {
   var xhr = new XMLHttpRequest();
   xhr.addEventListener('load', function(e) {
-    if((xhr.status === 200) || (xhr.status === 304)){
+    if(xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)){
       alert('Yeah! Data sent and response loaded.');
     }
     else {
@@ -101,6 +113,8 @@ function validateChallenge(event) {
   xhr.setRequestHeader("Content-type","application/json");
   xhr.send(formData());
   function formData() {
+    var who = logArray[3];
+    console.log(who);
     var entries = {};
     entries.submissionDate = Date.now();
     entries.hotThought = event.target.parentNode.parentNode.childNodes[1].childNodes[5].innerText;
