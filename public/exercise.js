@@ -66,9 +66,9 @@ function loadChallenge() {
                 var range = document.getElementById('percent-' + emotion);
                 var output = document.getElementById('resultOf' + emotion);
                 range.value = scale;
-                output.innerHTML = '<b>' + range.value + '%</b>';
+                output.innerText = range.value + '%';
                 range.addEventListener('input', function () {
-                  output.innerHTML = '<b>' + range.value + '%</b>';
+                  output.innerText = range.value + '%';
                 }, false);
               })(emotion);
             }
