@@ -69,7 +69,8 @@ function loadSuggestions(emotionsList) {
     showAutocompleteOnFocus: false
   });
 }
-(function () {
+
+(function() {
   $('#tokenfield')
     .on('tokenfield:createdtoken', function () {
       function setAttributes (element, attrs) {
@@ -200,16 +201,14 @@ function catalogLog() {
   entries.eventDescription = document.getElementById('description').value;
   entries.emotionsAndRange = {};
   var emotions = document.getElementById('tokenfield').value.split(', ');
-  for(var item = 0; item < emotions.length; item++){
+  for (var item = 0; item < emotions.length; item++) {
     var range = document.getElementById('percent-' + emotions[item]);
     entries.emotionsAndRange[emotions[item]] = range.value;
   }
   entries.automaticNegativeThoughts = [];
   var thoughts = document.querySelectorAll('#thoughts .catalog-group p');
-  for(var index = 0; index < thoughts.length; index++) {
+  for (var index = 0; index < thoughts.length; index++) {
     entries.automaticNegativeThoughts.push(thoughts[index].innerText);
   }
   return JSON.stringify(entries);
 }
-
-//var list = document.getElementsByClassName('thoughts-list');

@@ -1,9 +1,3 @@
-// internally should be consistent with itself
-// load challenge -> display challenge
-// DRY dont repeat yourself
-// wrap xhr in a closure
-// immeditaely invokved ananomoys fn
-// this way you can remove the readystate
 var xhr = new XMLHttpRequest();
 xhr.open('GET', './secureFormData/answers/5000/stress-logs', true);
 xhr.send();
@@ -103,11 +97,6 @@ submit.addEventListener('click', function(event){
   validateChallenge(event);
   clearForm(event)
 });
-
-//var logArray = [];
-//function getLog(entry){
-//  logArray.push(entry.logEntry);
-//}
 
 function validateChallenge(event) {
   var xhr = new XMLHttpRequest();
