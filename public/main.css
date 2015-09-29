@@ -1,3 +1,27 @@
-body {
-    background-color: antiquewhite;
+body { background-color: antiquewhite; }
+
+p { font-size: 14px; }
+
+p.subtitle { font-size: 14px; }
+
+.thoughts {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
 }
+
+#stressLogs tr:nth-child(odd){ background-color: #8fe2e5; }
+
+table td, table th {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+table th { font-size: 20px; }
+
+table th p { font-size: 20px; }
+
+td.thoughts-list { min-width: 200px; }
+
+td.situation { max-width: 400px; }
+

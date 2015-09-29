@@ -29,6 +29,7 @@ function displayLog(logEntry) {
 
   function displaySituation() {
     var descriptions = document.createElement('td');
+    descriptions.className = 'situation';
     var description = document.createElement('p');
     description.innerText = logEntry.eventDescription;
     descriptions.appendChild(description);
