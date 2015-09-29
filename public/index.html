@@ -112,7 +112,7 @@
         <div class="container-fluid">
           <div class="well well-lg" id="history">
             <div class="table-responsive">
-              <table class="table table-bordered">
+              <table>
                 <thead>
                 <tr>
                   <th>Date</th>
@@ -130,45 +130,45 @@
                   </th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                  <td>09/18/2015 10:27 PM</td>
-                  <td>I was sitting at home and received a message from my friend. I was also tired from working 15 hours...</td>
-                  <td class="catalog">
-                    <p data-emotion="Disappointed" data-range="80">Disappointed (80%)<p>
-                    <p data-emotion="Angry" data-range="60">Angry (60%)</p>
-                    <p data-emotion="Unworthy" data-range="70">Unworthy (70%)</p>
-                  </td>
-                  <td class="thoughts-list">
-                    <p class="thoughts" data-toggle="modal" data-target="#affirm">Nobody wants to be friends with me.</p>
-                    <p class="thoughts" data-toggle="modal" data-target="#affirm">I have no friends.</p>
-                    <p class="thoughts" data-toggle="modal" data-target="#affirm">I'm going to die alone.</p>
-                  </td>
-                  <td>
-                    <p>Disappointed (  %)</p>
-                    <p>Angry (  %)</p>
-                    <p>Unworthy (  %)</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td>09/18/2015 10:27 PM</td>
-                  <td>I was sitting at home and received a message from my friend. I was also tired from working 15 hours...</td>
-                  <td class="catalog">
-                    <p>Disappointed (80%)<p>
-                    <p>Angry (60%)</p>
-                    <p>Unworthy (70%)</p>
-                  </td>
-                  <td class="thoughts-list">
-                    <p class="thoughts" data-toggle="modal" data-target="#affirm">Nobody wants to be friends with me.</p>
-                    <p class="thoughts" data-toggle="modal" data-target="#affirm">I have no friends.</p>
-                    <p class="thoughts" data-toggle="modal" data-target="#affirm">I'm going to die alone.</p>
-                  </td>
-                  <td>
-                    <p>Disappointed (  %)</p>
-                    <p>Angry (  %)</p>
-                    <p>Unworthy (  %)</p>
-                  </td>
-                </tr>
+                <tbody id="stressLogs">
+                  <tr>
+                    <td>09/18/2015 10:27 PM</td>
+                    <td>I was sitting at home and received a message from my friend. I was also tired from working 15 hours...</td>
+                    <td class="catalog">
+                      <p data-emotion="Disappointed" data-range="80">Disappointed (80%)<p>
+                      <p data-emotion="Angry" data-range="60">Angry (60%)</p>
+                      <p data-emotion="Unworthy" data-range="70">Unworthy (70%)</p>
+                    </td>
+                    <td class="thoughts-list">
+                      <p class="thoughts" data-toggle="modal" data-target="#affirm">Nobody wants to be friends with me.</p>
+                      <p class="thoughts" data-toggle="modal" data-target="#affirm">I have no friends.</p>
+                      <p class="thoughts" data-toggle="modal" data-target="#affirm">I'm going to die alone.</p>
+                    </td>
+                    <td>
+                      <p>Disappointed (  %)</p>
+                      <p>Angry (  %)</p>
+                      <p>Unworthy (  %)</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>09/18/2015 10:27 PM</td>
+                    <td>I was sitting at home and received a message from my friend. I was also tired from working 15 hours...</td>
+                    <td class="catalog">
+                      <p>Disappointed (80%)<p>
+                      <p>Angry (60%)</p>
+                      <p>Unworthy (70%)</p>
+                    </td>
+                    <td class="thoughts-list">
+                      <p class="thoughts" data-toggle="modal" data-target="#affirm">Nobody wants to be friends with me.</p>
+                      <p class="thoughts" data-toggle="modal" data-target="#affirm">I have no friends.</p>
+                      <p class="thoughts" data-toggle="modal" data-target="#affirm">I'm going to die alone.</p>
+                    </td>
+                    <td>
+                      <p>Disappointed (  %)</p>
+                      <p>Angry (  %)</p>
+                      <p>Unworthy (  %)</p>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -252,7 +252,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button class="close" data-dismiss="modal" type="button" aria-hidden="true">&times;</button>
-                  <h2 class="modal-title" id="re-rateEmotions">Thought Challenge</h2>
+                  <h2 class="modal-title" id="rateEmotions">Thought Challenge</h2>
                   <h3 class="modal-title hot-thought">[SELECTED HOT THOUGHT]</h3>
                 </div>
                 <div class="modal-body">
