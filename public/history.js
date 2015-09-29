@@ -1,29 +1,53 @@
-function appendLog(sections){
-  console.log(sections.logEntry);
-  var display = document.createElement('tbody');
-  document.querySelector('.table.table-bordered').appendChild(display);
-  var row = document.createElement('tr');
-  display.appendChild(row);
+// like the chaining, on lke 5, it's not consistent with the other
+// change the name of dispplay,
+function displayLogs(sections){
+  // 3-11 could be a function
+  // so like "DRAW TABLE"
+  // appendLog -> displayLogs
+  // simplify code
+var stressLogs = document.querySelector('.table');
+var display = document.createElement('tbody');
+stressLogs.appendChild(display);
+var stressLog = document.createElement('tr');
+display.appendChild(stressLog);
+
+displayDate();
+displaySituation();
+displayEmotions();
+displayThoughts();
+
+function displayDate() {
   var dates = document.createElement('td');
-  row.appendChild(dates);
-  var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+  stressLog.appendChild(dates);
   var eventDate = new Date(sections.eventDate);
+  var options = {
+    weekday: 'short',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric'
+  };
   var localeTime = eventDate.toLocaleString('en-US', options);
   var entryDate = document.createElement('p');
   entryDate.innerText = localeTime;
   dates.appendChild(entryDate);
+}
+
+function displaySituation() {
   var descriptions = document.createElement('td');
   var description = document.createElement('p');
   description.innerText = sections.eventDescription;
   descriptions.appendChild(description);
-  row.appendChild(descriptions);
-  var ratedEmotions = sections.emotionsAndRange;
+  stressLog.appendChild(descriptions);
+}
+
+function displayEmotions() {
   var emotionsList = document.createElement('td');
   emotionsList.className = 'catalog';
-  row.appendChild(emotionsList);
-  var thoughtsList = document.createElement('td');
-  thoughtsList.className = 'thoughts-list';
-  row.appendChild(thoughtsList);
+  stressLog.appendChild(emotionsList);
+
+  var ratedEmotions = sections.emotionsAndRange;
   for (var key in ratedEmotions) {
     if (ratedEmotions.hasOwnProperty(key)) {
       var passage = document.createElement('p');
@@ -33,6 +57,13 @@ function appendLog(sections){
       passage.textContent = key + ' ' + '(' + ratedEmotions[key] + '%' + ')';
     }
   }
+}
+
+function displayThoughts() {
+  var thoughtsList = document.createElement('td');
+  thoughtsList.className = 'thoughts-list';
+  stressLog.appendChild(thoughtsList);
+  
   var negativeThoughts = sections.automaticNegativeThoughts;
   for (var thoughts in negativeThoughts) {
     if (negativeThoughts.hasOwnProperty(thoughts)) {
@@ -44,8 +75,10 @@ function appendLog(sections){
       newThought.textContent = negativeThoughts[thoughts];
     }
   }
+}
+
   var ratedList = document.createElement('td');
-  row.appendChild(ratedList);
+  stressLog.appendChild(ratedList);
   for (var property in ratedEmotions) {
     if (ratedEmotions.hasOwnProperty(property)) {
       var passageThree = document.createElement('p');
@@ -55,16 +88,16 @@ function appendLog(sections){
   }
 }
 var xhr = new XMLHttpRequest();
+xhr.open('GET', './secureFormData/answers/5000/stress-logs', true);
+xhr.send();
+
 xhr.addEventListener('load', function(e) {
   var response = e.target.responseText;
-  console.log(response);
   var stressLog = JSON.parse(response);
   stressLog.forEach(function(section){
-    appendLog(section);
+    displayLogs(section);
   });
 });
 xhr.addEventListener("error", function() {
   alert('Something went wrong. Something did not load properly. Check router and server configurations');
 });
-xhr.open('GET', './secureFormData/answers/5000/stress-logs', true);
-xhr.send();
