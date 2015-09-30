@@ -11,13 +11,13 @@ gulp.task('watch', function () {
 });
 
 gulp.task('test', function () {
-  return gulp.src('server.js', {read:  false})
+  return gulp.src('test.js', {read:  false})
       .pipe(mocha({reporter: 'landing'}));
 });
 
 gulp.task('nodemon', function () {
   nodemon({
-    script: 'server.js',
+    script: 'test.js',
     ext: 'js'
   })
       .on('start', ['test', 'feedback', 'watch'], function () {
