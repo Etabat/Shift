@@ -18,7 +18,7 @@ function displayChallenge() {
       var hotThoughts = document.querySelectorAll('.hot-thought');
       for (var thought = 0; thought < hotThoughts.length; thought++) {
         hotThoughts[thought].textContent = 'Selected hot-thought: ' + event.target.innerText;
-        displayEmotions(event)
+        displayEmotions(event);
       }
     }
   }
@@ -44,7 +44,7 @@ function displayEmotions(event) {
         });
         label.textContent = emotion;
         collection.appendChild(label);
-        displayRange(collection, emotions, emotion, nodes)
+        displayRange(collection, emotions, emotion, nodes);
       }
     }
   });
@@ -95,7 +95,7 @@ submit.addEventListener('click', function(event){
   console.log(event.target);
   event.preventDefault();
   validateChallenge(event);
-  clearForm(event)
+  clearForm(event);
 });
 
 function validateChallenge(event) {

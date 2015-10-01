@@ -173,7 +173,7 @@ function editEntry(event) {
 var submitLog = document.getElementById('submit');
 submitLog.addEventListener('click', function(event) {
   console.log(event.target);
-  validateLog(event)
+  validateLog(event);
 }, true);
 
 function validateLog(event) {
@@ -196,7 +196,7 @@ function validateLog(event) {
 }
 
 function catalogLog() {
-  var entries = new Object();
+  var entries = {};
   entries.eventDate = document.getElementById('period').value;
   entries.eventDescription = document.getElementById('description').value;
   entries.emotionsAndRange = {};

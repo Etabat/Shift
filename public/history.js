@@ -1,3 +1,19 @@
+var xhr = new XMLHttpRequest();
+xhr.open('GET', './secureFormData/answers/5000/stress-logs', true);
+xhr.send();
+
+xhr.addEventListener('load', function(event) {
+  var response = event.target.responseText;
+  var stressLog = JSON.parse(response);
+  stressLog.forEach(function(logEntry){
+    displayLog(logEntry);
+  });
+});
+
+xhr.addEventListener("error", function() {
+  alert('Something went wrong. Something did not load properly. Check router and server configurations');
+});
+
 function displayLog(logEntry) {
   var stressLogs = document.getElementById('stressLogs');
   var stressLog = document.createElement('tr');
@@ -84,19 +100,3 @@ function displayLog(logEntry) {
     }
   }
 }
-
-var xhr = new XMLHttpRequest();
-xhr.open('GET', './secureFormData/answers/5000/stress-logs', true);
-xhr.send();
-
-xhr.addEventListener('load', function(event) {
-  var response = event.target.responseText;
-  var stressLog = JSON.parse(response);
-  stressLog.forEach(function(logEntry){
-    displayLog(logEntry);
-  });
-});
-
-xhr.addEventListener("error", function() {
-  alert('Something went wrong. Something did not load properly. Check router and server configurations');
-});
