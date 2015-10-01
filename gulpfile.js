@@ -7,7 +7,7 @@ gulp.task('feedback', function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch('*.js', ['test']);
+  gulp.watch('./json/emotions.json', ['test', 'feedback']);
 });
 
 gulp.task('test', function () {
@@ -20,7 +20,7 @@ gulp.task('nodemon', function () {
     script: 'test.js',
     ext: 'js'
   })
-      .on('start', ['test', 'feedback', 'watch'], function () {
+      .on('start', ['watch'], function () {
         console.log('Server has started')
       })
       .on('change', function () {

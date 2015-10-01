@@ -6,5 +6,12 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/json'));
 app.use('/secureFormData',  answers);
 
-app.listen(1377);
+app.get('/test', function (req, res) {
+  res.send('res send test');
+  console.log('testing console')
+});
+
+app.listen(1337);
 console.log('Server running. Port 1337');
+
+module.exports = app;

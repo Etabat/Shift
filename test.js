@@ -1,21 +1,22 @@
-var express = require('express');
-var should = require('should');
 var request = require('supertest');
-var answers = require('./answers');
+var myApp = require('./server.js');
 
-describe('GET stress-logs', function(){
-  var app = express();
+describe('GET /test', function(){
+  it('respond with plain text', function(done){
+      request(myApp)
+        .get('/test')
+        .expect(200)
+        .end(done)
+  })
+});
 
-  app.use('/secureFormData', answers);
-
-  var agent = request.agent(app);
-
+describe('GET /emotions.json', function(){
   it('respond with json', function(done){
-    agent
-        .get('/secureFormData/answers/5000/stress-logs')
+    request(myApp)
+        .get('/emotions.json')
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200)
         .end(done)
-  });
+  })
 });
