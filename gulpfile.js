@@ -1,5 +1,7 @@
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
+var minifyHtml = require('gulp-minify-html');
+var minifyCss = require('gulp-minify-css');
 var nodemon = require('gulp-nodemon');
 var mocha = require('gulp-mocha');
 var jshint = require('gulp-jshint');
@@ -25,16 +27,31 @@ gulp.task('minifyJs', function () {
       .pipe(gulp.dest('./public/dist'))
 });
 
+gulp.task('minifyCss', function () {
+  return gulp.src('./public/*.css')
+      .pipe(minifyCss())
+      .pipe(gulp.dest('./public/dist'))
+});
+
+gulp.task('minifyHtml', function () {
+  var opts = {
+    conditionals: true
+  };
+  return gulp.src('./public/*.html')
+      .pipe(minifyHtml(opts))
+      .pipe(gulp.dest('./public/dist'))
+});
+
 gulp.task('nodemon', function () {
   nodemon({
     script: 'test.js',
     ext: 'js'
   })
-      .on('start', ['watch',  'minifyJs'], function () {
+      .on('start', ['minifyJs', 'minifyCss', 'minifyHtml', 'watch'], function () {
         console.log('Server has started')
       })
       .on('change', function () {
-        console.log('Change has occurred')
+        console.log('Change has occurred -nodemon')
       })
       .on('crash', function () {
         console.log('Server has crashed!')

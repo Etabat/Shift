@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var answers = require('./answers');
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public/dist'));
 app.use(express.static(__dirname + '/json'));
 app.use('/secureFormData',  answers);
 
