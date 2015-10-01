@@ -17,7 +17,7 @@ gulp.task('test', function () {
       .pipe(mocha({reporter: 'landing'}));
 });
 
-gulp.task('minify', function () {
+gulp.task('minifyJs', function () {
   return gulp.src('./public/*.js')
       .pipe(jshint())
       .pipe(jshint.reporter('default'))
@@ -30,7 +30,7 @@ gulp.task('nodemon', function () {
     script: 'test.js',
     ext: 'js'
   })
-      .on('start', ['watch',  'minify'], function () {
+      .on('start', ['watch',  'minifyJs'], function () {
         console.log('Server has started')
       })
       .on('change', function () {
