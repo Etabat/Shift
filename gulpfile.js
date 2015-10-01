@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var minifyHtml = require('gulp-minify-html');
 var minifyCss = require('gulp-minify-css');
+var minifyImage = require('gulp-imagemin');
 var nodemon = require('gulp-nodemon');
 var mocha = require('gulp-mocha');
 var jshint = require('gulp-jshint');
@@ -40,6 +41,12 @@ gulp.task('minifyHtml', function () {
   return gulp.src('./public/*.html')
       .pipe(minifyHtml(opts))
       .pipe(gulp.dest('./public/dist'))
+});
+
+gulp.task('minifyImage', function () {
+  return gulp.src('./public/images/*')
+      .pipe(minifyImage())
+      .pipe(gulp.dest('./public/dist/images'))
 });
 
 gulp.task('nodemon', function () {
