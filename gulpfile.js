@@ -8,16 +8,8 @@ var mocha = require('gulp-mocha');
 var jshint = require('gulp-jshint');
 var browserSync = require('browser-sync').create();
 
-gulp.task('watch', ['sync'], function() {
-  gulp.watch('./public/*', ['min', 'reload']);
-});
-
-gulp.task('test' ,function () {
-  return gulp.src('test.js', {read:  false})
-    .pipe(mocha({reporter: 'landing'}));
-});
-
-gulp.task('min', ['html', 'css', 'js']);
+// minification of public files
+gulp.task('min', ['html', 'css', 'js', 'image']);
 
 gulp.task('js',function () {
   return gulp.src('./public/*.js')
@@ -48,32 +40,27 @@ gulp.task('image', ['reload'], function () {
     .pipe(gulp.dest('./public/dist/images'))
 });
 
+// browser sync with watch
 gulp.task('sync', function() {
   browserSync.init({
     proxy: 'localhost:1337'
   });
+  gulp.watch('./public/*', ['min', 'test']).on('change', browserSync.reload);
 });
 
-gulp.task('reload', browserSync.reload(['./public/dist/*']));
-
+// nodemon on server & mocha test
 gulp.task('nodemon', function () {
   nodemon({
     script: 'server.js',
     ext: 'js'
   })
-    .on('start', ['min', 'watch'], function () {
-      console.log('Server has started')
-    })
-    .on('change', function () {
-      console.log('Change has occurred -nodemon')
-    })
-    .on('crash', function () {
-      console.log('Server has crashed!')
-    })
-    .on('restart', function () {
-      console.log('Restarted!')
-    })
+    .on('start', ['test']);
+});
+
+gulp.task('test' ,function () {
+  return gulp.src('test.js', {read:  false})
+      .pipe(mocha({reporter: 'landing'}));
 });
 
 // default start
-gulp.task('default', ['nodemon']);
+gulp.task('default', ['nodemon', 'sync']);

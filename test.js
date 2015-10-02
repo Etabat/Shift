@@ -1,9 +1,9 @@
-var request = require('supertest');
-var myApp = require('./server.js');
+var should = require('should');
+var agent =  require('supertest')('http://localhost:1337');
 
 describe('GET /test', function(){
   it('respond with plain text', function(done){
-      request(myApp)
+      agent
         .get('/test')
         .expect(200)
         .end(done)
@@ -12,7 +12,7 @@ describe('GET /test', function(){
 
 describe('GET /emotions.json', function(){
   it('respond with json', function(done){
-    request(myApp)
+    agent
         .get('/emotions.json')
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)

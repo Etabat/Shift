@@ -2,7 +2,7 @@
   "name": "bttools",
   "version": "1.0.0",
   "description": "Directory for bttools. Bttools is a microservice for therapy clients to view, fill, and submit exercises",
-  "main": "exercises.js",
+  "main": "server.js",
   "scripts": {
     "test": "Hello World",
     "start": "node server.js"
