@@ -17,7 +17,7 @@ gulp.task('js',function () {
 });
 
 gulp.task('css', function () {
-  return gulp.src('./public/*.css')
+  return gulp.src('../public/*.css')
       .pipe(minifyCss())
       .pipe(gulp.dest('./public/dist'))
 });
@@ -31,7 +31,7 @@ gulp.task('html', function () {
       .pipe(gulp.dest('./public/dist'))
 });
 
-gulp.task('image', ['reload'], function () {
+gulp.task('image', function () {
   return gulp.src('./public/images/*')
       .pipe(minifyImage())
       .pipe(gulp.dest('./public/dist/images'))

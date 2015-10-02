@@ -4,6 +4,8 @@ var answers = require('./answers');
 
 app.use(express.static(__dirname + '/public/dist'));
 app.use(express.static(__dirname + '/json'));
+app.use(express.static(__dirname + '/bower_components'));
+
 app.use('/secureFormData',  answers);
 
 app.get('/test', function (req, res) {
