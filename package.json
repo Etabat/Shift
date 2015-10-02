@@ -36,6 +36,7 @@
     "supertest": "^1.1.0"
   },
   "devDependencies": {
+    "browser-sync": "^2.9.8",
     "gulp": "^3.9.0",
     "gulp-imagemin": "^2.3.0",
     "gulp-jshint": "^1.11.2",

@@ -8,9 +8,8 @@ var mocha = require('gulp-mocha');
 var jshint = require('gulp-jshint');
 var browserSync = require('browser-sync').create();
 
-gulp.task('watch', function () {
-  gulp.watch('./public/*')
-      .on('change', browserSync.reload, 'test')
+gulp.task('watch', ['sync'], function() {
+  gulp.watch('./public/*', ['min', 'reload']);
 });
 
 gulp.task('test' ,function () {
@@ -20,7 +19,7 @@ gulp.task('test' ,function () {
 
 gulp.task('min', ['html', 'css', 'js']);
 
-gulp.task('js', function () {
+gulp.task('js',function () {
   return gulp.src('./public/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
@@ -43,7 +42,7 @@ gulp.task('html', function () {
     .pipe(gulp.dest('./public/dist'))
 });
 
-gulp.task('minifyImage', function () {
+gulp.task('image', ['reload'], function () {
   return gulp.src('./public/images/*')
     .pipe(minifyImage())
     .pipe(gulp.dest('./public/dist/images'))
@@ -55,14 +54,14 @@ gulp.task('sync', function() {
   });
 });
 
-gulp.task('reload', browserSync.reload);
+gulp.task('reload', browserSync.reload(['./public/dist/*']));
 
 gulp.task('nodemon', function () {
   nodemon({
     script: 'server.js',
     ext: 'js'
   })
-    .on('start', ['min', 'sync', 'watch'], function () {
+    .on('start', ['min', 'watch'], function () {
       console.log('Server has started')
     })
     .on('change', function () {
