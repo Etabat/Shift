@@ -2,7 +2,7 @@ var xhr = new XMLHttpRequest();
 xhr.open('GET', './secureFormData/answers/5000/stress-logs', true);
 xhr.send();
 xhr.addEventListener('load', function(event) {
-  if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)){
+  if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status == 304)){
     displayChallenge();
   }
   else {
@@ -26,11 +26,9 @@ function displayChallenge() {
 
 function displayEmotions(event) {
   $('#reassess').on('show.bs.modal', function () {
-    console.log('hi');
     var reassess = document.querySelector('#reassess form');
     refreshEmotions(reassess);
     var emotions = event.target.parentNode.previousSibling.childNodes;
-    console.log(emotions);
     for (var nodes = 0; nodes < emotions.length; nodes++) {
       if (emotions[nodes].nodeName == 'P') {
         var emotion = emotions[nodes].dataset.emotion;
@@ -92,7 +90,6 @@ function displayRange(collection, emotions, emotion, nodes) {
 
 var submit = document.getElementById('validate');
 submit.addEventListener('click', function(event){
-  console.log(event.target);
   event.preventDefault();
   validateChallenge(event);
   clearForm(event);
@@ -111,7 +108,7 @@ function validateChallenge(event) {
 function catalogChallenge(event) {
   var entries = {};
   entries.submissionDate = Date.now();
-  entries.hotThought = event.target.parentNode.parentNode.childNodes[1].childNodes[5].innerText;
+  entries.hotThought = event.target.parentElement.parentElement.children[0].lastElementChild.textContent;
   entries.evidence = document.getElementById('evidence').value;
   entries.evidenceAgainst = document.getElementById('evidence-against').value;
   entries.alternative = document.getElementById('alternative').value;
