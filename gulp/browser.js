@@ -4,7 +4,8 @@ var browserSync = require('browser-sync').create();
 // browser sync with watch
 gulp.task('sync', ['nodemon'] ,function() {
   browserSync.init({
-    proxy: 'localhost:1337'
+    proxy: 'localhost:1337',
+    reloadDelay: 2000
   });
   gulp.watch('./public/*', ['min', 'test']).on('change', browserSync.reload);
   gulp.watch('./5000/*/*', ['test']).on('change', browserSync.reload);
