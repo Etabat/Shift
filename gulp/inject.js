@@ -7,5 +7,6 @@ gulp.task('inject', function () {
         optional: 'configuration',
         goes: 'here'
       }))
+    // Test distribution folder. Do not use for production
       .pipe(gulp.dest('./public/dist2'));
 });
