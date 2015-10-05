@@ -5,24 +5,14 @@ var minifyImage = require('gulp-imagemin');
 var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
 
-// minification of public files
-gulp.task('min', ['html', 'css', 'js', 'image']);
-
-gulp.task('js',function () {
-  return gulp.src('./public/*.js')
-      .pipe(jshint())
-      .pipe(jshint.reporter('default'))
-      .pipe(uglify())
-      .pipe(gulp.dest('./public/dist'))
+// minification of public files. runs tasks in series
+gulp.task('image', ['inject'], function () {
+  return gulp.src('./public/images/*')
+      .pipe(minifyImage())
+      .pipe(gulp.dest('./public/dist/images'));
 });
 
-gulp.task('css', function () {
-  return gulp.src('../public/*.css')
-      .pipe(minifyCss())
-      .pipe(gulp.dest('./public/dist'))
-});
-
-gulp.task('html', function () {
+gulp.task('html', ['image'] ,function () {
   var opts = {
     conditionals: true
   };
@@ -31,8 +21,18 @@ gulp.task('html', function () {
       .pipe(gulp.dest('./public/dist'))
 });
 
-gulp.task('image', function () {
-  return gulp.src('./public/images/*')
-      .pipe(minifyImage())
-      .pipe(gulp.dest('./public/dist/images'))
+gulp.task('css', ['image', 'html'] ,function () {
+  return gulp.src('../public/*.css')
+      .pipe(minifyCss())
+      .pipe(gulp.dest('./public/dist'))
 });
+
+gulp.task('js', ['image', 'html', 'css'], function () {
+  return gulp.src('./public/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'))
+    .pipe(uglify())
+    .pipe(gulp.dest('./public/dist'))
+});
+
+gulp.task('min', ['image', 'html', 'css', 'js']);
