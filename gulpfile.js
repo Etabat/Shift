@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 
 // default start
-gulp.task('default', ['min', 'nodemon', 'test', 'sync']);
+gulp.task('default', ['sync']);
 
 //task separation
 require('require-dir')('./gulp');

@@ -27,5 +27,19 @@
     "bootstrap-tokenfield": "~0.12.1",
     "bootstrap": "~3.3.5",
     "jquery-ui": "~1.11.4"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.min.css",
+        "dist/js/bootstrap.min.js"
+      ]
+    },
+    "jquery-ui": {
+      "main": [
+        "themes/smoothness/jquery-ui.min.css",
+        "jquery-ui.min.js"
+      ]
+    }
   }
 }
